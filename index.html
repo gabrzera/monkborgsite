@@ -107,7 +107,7 @@
 
   /* PROBLEMA */
   #problema { padding: 100px 0 0; background: var(--black); }
-  .problema-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .problema-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
 
   .problem-cards { display: flex; flex-direction: column; gap: 14px; margin-top: 10px; }
   .problem-card { display: flex; align-items: flex-start; gap: 16px; background: var(--black2); border: 1px solid rgba(212,175,55,0.1); border-left: 2px solid var(--gold2); padding: 18px 20px; border-radius: 3px; transition: border-color 0.3s, background 0.3s, transform 0.3s; cursor: default; }
@@ -583,11 +583,14 @@
 <!-- PROBLEMA -->
 <section id="problema">
   <div class="container">
+    <!-- Título full-width acima da grid -->
+    <div class="reveal" style="margin-bottom:48px;">
+      <div class="section-label">O Problema</div>
+      <h2 class="section-h2">A maioria dos traders nunca evolui. <span class="gold">E o motivo é simples.</span></h2>
+      <div class="gold-line"></div>
+    </div>
     <div class="problema-inner">
       <div class="problema-left">
-        <div class="section-label reveal">O Problema</div>
-        <h2 class="section-h2 reveal">Por que a maioria dos traders <span class="gold">nunca evolui?</span></h2>
-        <div class="gold-line reveal"></div>
         <div class="problem-cards">
           <div class="problem-card reveal">
             <div class="problem-icon">🎯</div>
