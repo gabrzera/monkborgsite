@@ -22,9 +22,7 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; font-size: 16px; }
-
   body {
     background: var(--black);
     color: var(--white);
@@ -33,49 +31,28 @@
     overflow-x: hidden;
   }
 
-  /* ——— NOISE OVERLAY ——— */
   body::before {
     content: '';
     position: fixed; inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
-    opacity: .4;
+    pointer-events: none; z-index: 0; opacity: .4;
   }
 
-  /* ——— SCROLLBAR ——— */
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--black2); }
   ::-webkit-scrollbar-thumb { background: var(--gold2); border-radius: 2px; }
 
-  /* ——— UTILS ——— */
   .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
   .gold { color: var(--gold); }
-  .sr-only { position: absolute; opacity: 0; pointer-events: none; }
 
-  /* ——— REVEAL ANIMATIONS ——— */
-  .reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  .reveal-left {
-    opacity: 0;
-    transform: translateX(-40px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
+  .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.8s ease, transform 0.8s ease; }
   .reveal-left.visible { opacity: 1; transform: translateX(0); }
-
-  .reveal-right {
-    opacity: 0;
-    transform: translateX(40px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
+  .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
   .reveal-right.visible { opacity: 1; transform: translateX(0); }
 
-  /* ——— NAV ——— */
+  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     padding: 16px 0;
@@ -84,1003 +61,374 @@
     border-bottom: 1px solid rgba(212,175,55,0.06);
     transition: background 0.3s;
   }
-  nav.scrolled {
-    background: rgba(11,11,11,0.97);
-    border-bottom-color: rgba(212,175,55,0.12);
-  }
-  nav .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .nav-logo {
-    display: flex; align-items: center; gap: 10px;
-    text-decoration: none;
-  }
+  nav.scrolled { background: rgba(11,11,11,0.97); border-bottom-color: rgba(212,175,55,0.12); }
+  nav .container { display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
   .nav-logo img { height: 42px; width: auto; }
-  .nav-logo span {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.6rem;
-    letter-spacing: 3px;
-    color: var(--gold);
-  }
-  .nav-links {
-    display: flex; gap: 36px; list-style: none;
-    align-items: center;
-  }
-  .nav-links a {
-    color: var(--gray);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
+  .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+  .nav-links a { color: var(--gray); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.2s; }
   .nav-links a:hover { color: var(--gold); }
-  .nav-cta {
-    background: var(--gold);
-    color: var(--black) !important;
-    padding: 9px 22px;
-    border-radius: 2px;
-    font-weight: 700 !important;
-    font-size: 0.8rem !important;
-    letter-spacing: 1.5px !important;
-    transition: background 0.2s, box-shadow 0.2s !important;
-  }
-  .nav-cta:hover {
-    background: var(--gold3) !important;
-    box-shadow: 0 0 18px rgba(212,175,55,0.35) !important;
-    color: var(--black) !important;
-  }
+  .nav-cta { background: var(--gold); color: var(--black) !important; padding: 9px 22px; border-radius: 2px; font-weight: 700 !important; font-size: 0.8rem !important; letter-spacing: 1.5px !important; transition: background 0.2s, box-shadow 0.2s !important; }
+  .nav-cta:hover { background: var(--gold3) !important; box-shadow: 0 0 18px rgba(212,175,55,0.35) !important; color: var(--black) !important; }
 
-  /* ——— HERO ——— */
-  #hero {
-    min-height: 100vh;
-    display: flex; align-items: center;
-    padding-top: 100px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(212,175,55,0.06) 0%, transparent 70%),
-                radial-gradient(ellipse 40% 40% at 10% 80%, rgba(212,175,55,0.03) 0%, transparent 60%);
-  }
-  .hero-grid-lines {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(212,175,55,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(212,175,55,0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 30%, transparent 80%);
-  }
-  .hero-inner {
-    position: relative; z-index: 2;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-    width: 100%;
-  }
-  .hero-label {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold);
-    border: 1px solid rgba(212,175,55,0.25);
-    padding: 6px 14px;
-    border-radius: 1px;
-    margin-bottom: 28px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-label::before {
-    content: '';
-    position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-    background: var(--gold);
-  }
-  .hero-h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.8rem, 5vw, 4.6rem);
-    line-height: 1.0;
-    letter-spacing: 2px;
-    margin-bottom: 24px;
-    color: var(--white);
-  }
-  .hero-h1 em {
-    font-style: normal;
-    color: var(--gold);
-    display: block;
-  }
-  .hero-sub {
-    font-size: 1.1rem;
-    color: var(--gray);
-    line-height: 1.7;
-    max-width: 480px;
-    margin-bottom: 44px;
-    font-weight: 300;
-  }
+  /* HERO */
+  #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 100px; position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(212,175,55,0.06) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 10% 80%, rgba(212,175,55,0.03) 0%, transparent 60%); }
+  .hero-grid-lines { position: absolute; inset: 0; background-image: linear-gradient(rgba(212,175,55,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.04) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 30%, transparent 80%); }
+  .hero-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; width: 100%; }
+  .hero-label { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(212,175,55,0.25); padding: 6px 14px; border-radius: 1px; margin-bottom: 28px; position: relative; overflow: hidden; }
+  .hero-label::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--gold); }
+  .hero-h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.8rem, 5vw, 4.6rem); line-height: 1.0; letter-spacing: 2px; margin-bottom: 24px; color: var(--white); }
+  .hero-h1 em { font-style: normal; color: var(--gold); display: block; }
+  .hero-sub { font-size: 1.1rem; color: var(--gray); line-height: 1.7; max-width: 480px; margin-bottom: 44px; font-weight: 300; }
   .hero-sub strong { color: var(--white); font-weight: 500; }
   .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
 
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: var(--gold);
-    color: var(--black);
-    font-weight: 700;
-    font-size: 0.9rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 15px 32px;
-    border-radius: 2px;
-    position: relative;
-    overflow: hidden;
-    transition: box-shadow 0.3s, transform 0.2s;
-  }
-  .btn-primary::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(to right, transparent, rgba(255,255,255,0.12), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.5s;
-  }
+  .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: var(--black); font-weight: 700; font-size: 0.9rem; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; padding: 15px 32px; border-radius: 2px; position: relative; overflow: hidden; transition: box-shadow 0.3s, transform 0.2s; }
+  .btn-primary::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, transparent, rgba(255,255,255,0.12), transparent); transform: translateX(-100%); transition: transform 0.5s; }
   .btn-primary:hover { box-shadow: 0 0 30px rgba(212,175,55,0.45); transform: translateY(-1px); }
   .btn-primary:hover::after { transform: translateX(100%); }
-
-  .btn-secondary {
-    display: inline-flex; align-items: center; gap: 8px;
-    color: var(--gold);
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-decoration: none;
-    padding: 15px 20px;
-    border: 1px solid rgba(212,175,55,0.25);
-    border-radius: 2px;
-    transition: border-color 0.3s, background 0.3s;
-  }
-  .btn-secondary:hover {
-    border-color: var(--gold);
-    background: rgba(212,175,55,0.06);
-  }
-  .btn-secondary .arrow {
-    transition: transform 0.3s;
-  }
+  .btn-secondary { display: inline-flex; align-items: center; gap: 8px; color: var(--gold); font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; text-decoration: none; padding: 15px 20px; border: 1px solid rgba(212,175,55,0.25); border-radius: 2px; transition: border-color 0.3s, background 0.3s; }
+  .btn-secondary:hover { border-color: var(--gold); background: rgba(212,175,55,0.06); }
+  .btn-secondary .arrow { transition: transform 0.3s; }
   .btn-secondary:hover .arrow { transform: translateX(4px); }
 
-  /* Hero Right (legacy stubs kept for compat) */
-  .hero-card-stack {
-    position: relative;
-    width: 100%;
-    max-width: 440px;
-    margin: 0 auto;
-  }
-  .hero-main-card {
-    background: var(--black2);
-    border: 1px solid rgba(212,175,55,0.18);
-    border-radius: 8px;
-    padding: 28px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-main-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(to right, transparent, var(--gold), transparent);
-  }
-  .card-header {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  .card-title {
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-  .card-live {
-    display: flex; align-items: center; gap: 6px;
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #3EC87A;
-  }
-  .live-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: #3EC87A;
-    animation: pulse-green 2s infinite;
-  }
-  @keyframes pulse-green {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-
-  /* Mini chart */
-  .mini-chart {
-    width: 100%; height: 80px;
-    margin-bottom: 16px;
-  }
-  .chart-bars {
-    display: flex; align-items: flex-end; gap: 3px; height: 100%;
-  }
-  .bar {
-    flex: 1;
-    background: linear-gradient(to top, rgba(212,175,55,0.6), rgba(212,175,55,0.1));
-    border-radius: 2px 2px 0 0;
-    animation: bar-grow 1.5s ease backwards;
-  }
-  @keyframes bar-grow {
-    from { transform: scaleY(0); transform-origin: bottom; }
-    to { transform: scaleY(1); transform-origin: bottom; }
-  }
-
-  .card-stats {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-  .stat-item {
-    background: rgba(212,175,55,0.04);
-    border: 1px solid rgba(212,175,55,0.1);
-    border-radius: 4px;
-    padding: 12px;
-  }
-  .stat-label {
-    font-size: 0.65rem; color: var(--gray2);
-    letter-spacing: 1.5px; text-transform: uppercase;
-    margin-bottom: 4px;
-  }
-  .stat-value {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.3rem; font-weight: 700;
-    color: var(--gold);
-  }
-  .stat-value.green { color: #3EC87A; }
-
-  .hero-float-card {
-    position: absolute;
-    background: var(--black3);
-    border: 1px solid rgba(212,175,55,0.18);
-    border-radius: 6px;
-    padding: 14px 18px;
-  }
-  .hfc-1 {
-    top: -30px; right: -20px;
-    animation: float1 5s ease-in-out infinite;
-  }
-  .hfc-2 {
-    bottom: -20px; left: -24px;
-    animation: float2 6s ease-in-out infinite;
-  }
-  @keyframes float1 {
-    0%, 100% { transform: translateY(0) rotate(1deg); }
-    50% { transform: translateY(-10px) rotate(-1deg); }
-  }
-  @keyframes float2 {
-    0%, 100% { transform: translateY(0) rotate(-1deg); }
-    50% { transform: translateY(10px) rotate(1deg); }
-  }
-  .hfc-tag {
-    font-size: 0.65rem; color: var(--gold);
-    font-weight: 600; letter-spacing: 1px;
-    text-transform: uppercase; margin-bottom: 2px;
-  }
-  .hfc-val {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.2rem; font-weight: 700; color: var(--white);
-  }
-  .hfc-chg { font-size: 0.7rem; color: #3EC87A; }
-
-  /* Hero logo behind */
-  .hero-logo-bg {
-    position: absolute;
-    width: 280px; height: 280px;
-    right: -60px; top: 50%; transform: translateY(-50%);
-    opacity: 0.04;
-    pointer-events: none;
-  }
-
-  /* Scroll indicator */
-  .scroll-indicator {
-    position: absolute; bottom: 40px; left: 50%;
-    transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-    color: var(--gray2);
-    font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;
-    animation: bounce 2.5s infinite;
-  }
+  .scroll-indicator { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--gray2); font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; animation: bounce 2.5s infinite; z-index: 0; pointer-events: none; }
   .scroll-arrow { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); }
-  @keyframes bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(8px); }
-  }
+  @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
 
-  /* ——— SECTIONS COMMON ——— */
   section { position: relative; z-index: 1; }
-  .section-label {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 16px;
-  }
-  .section-label::before {
-    content: '';
-    display: block; width: 24px; height: 1px;
-    background: var(--gold);
-  }
-  .section-h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2rem, 4vw, 3.4rem);
-    line-height: 1.0;
-    letter-spacing: 2px;
-    color: var(--white);
-    margin-bottom: 16px;
-  }
-  .section-sub {
-    color: var(--gray);
-    font-size: 1.05rem;
-    font-weight: 300;
-    line-height: 1.7;
-    max-width: 580px;
-  }
-  .gold-line {
-    width: 60px; height: 2px;
-    background: linear-gradient(to right, var(--gold), transparent);
-    margin: 20px 0 40px;
-  }
-  .divider {
-    height: 1px;
-    background: linear-gradient(to right, transparent, rgba(212,175,55,0.15), transparent);
-    margin: 0;
-  }
+  .section-label { display: inline-flex; align-items: center; gap: 10px; font-size: 0.7rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+  .section-h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.0; letter-spacing: 2px; color: var(--white); margin-bottom: 16px; }
+  .section-sub { color: var(--gray); font-size: 1.05rem; font-weight: 300; line-height: 1.7; max-width: 580px; }
+  .gold-line { width: 60px; height: 2px; background: linear-gradient(to right, var(--gold), transparent); margin: 20px 0 40px; }
+  .divider { height: 1px; background: linear-gradient(to right, transparent, rgba(212,175,55,0.15), transparent); margin: 0; }
 
-  /* ——— SECTION 2: PROBLEMA ——— */
-  #problema {
-    padding: 100px 0;
-    background: var(--black);
-  }
-  .problema-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: start;
-  }
-  .problem-cards {
-    display: flex; flex-direction: column; gap: 14px;
-    margin-top: 10px;
-  }
-  .problem-card {
-    display: flex; align-items: flex-start; gap: 16px;
-    background: var(--black2);
-    border: 1px solid rgba(212,175,55,0.1);
-    border-left: 2px solid var(--gold2);
-    padding: 18px 20px;
-    border-radius: 3px;
-    transition: border-color 0.3s, background 0.3s, transform 0.3s;
-    cursor: default;
-  }
-  .problem-card:hover {
-    border-left-color: var(--gold);
-    background: rgba(212,175,55,0.03);
-    transform: translateX(4px);
-  }
-  .problem-icon {
-    flex-shrink: 0; width: 36px; height: 36px;
-    display: flex; align-items: center; justify-content: center;
-    border: 1px solid rgba(212,175,55,0.2);
-    border-radius: 3px;
-    color: var(--gold);
-    font-size: 1rem;
-    margin-top: 2px;
-  }
-  .problem-text h4 {
-    font-weight: 600; font-size: 0.95rem;
-    color: var(--white); margin-bottom: 4px;
-  }
+  /* PROBLEMA */
+  #problema { padding: 100px 0 0; background: var(--black); }
+  .problema-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .problem-cards { display: flex; flex-direction: column; gap: 14px; margin-top: 10px; }
+  .problem-card { display: flex; align-items: flex-start; gap: 16px; background: var(--black2); border: 1px solid rgba(212,175,55,0.1); border-left: 2px solid var(--gold2); padding: 18px 20px; border-radius: 3px; transition: border-color 0.3s, background 0.3s, transform 0.3s; cursor: default; }
+  .problem-card:hover { border-left-color: var(--gold); background: rgba(212,175,55,0.03); transform: translateX(4px); }
+  .problem-icon { flex-shrink: 0; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(212,175,55,0.2); border-radius: 3px; color: var(--gold); font-size: 1rem; margin-top: 2px; }
+  .problem-text h4 { font-weight: 600; font-size: 0.95rem; color: var(--white); margin-bottom: 4px; }
   .problem-text p { font-size: 0.88rem; color: var(--gray); line-height: 1.5; }
-
-  .problema-right {
-    padding-top: 30px;
-  }
-  .break-box {
-    background: var(--black2);
-    border: 1px solid rgba(212,175,55,0.2);
-    border-radius: 6px;
-    padding: 36px 32px;
-    position: relative;
-    overflow: hidden;
-  }
-  .break-box::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(to right, var(--gold2), var(--gold3), var(--gold2));
-  }
-  .break-quote {
-    font-size: 2.5rem; color: rgba(212,175,55,0.2);
-    line-height: 1; margin-bottom: 12px;
-    font-family: serif;
-  }
-  .break-text {
-    font-size: 1.15rem;
-    color: var(--white);
-    line-height: 1.7;
-    font-weight: 300;
-    margin-bottom: 20px;
-  }
+  .problema-right { padding-top: 30px; }
+  .break-box { background: var(--black2); border: 1px solid rgba(212,175,55,0.2); border-radius: 6px; padding: 36px 32px; position: relative; overflow: hidden; }
+  .break-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--gold2), var(--gold3), var(--gold2)); }
+  .break-quote { font-size: 2.5rem; color: rgba(212,175,55,0.2); line-height: 1; margin-bottom: 12px; font-family: serif; }
+  .break-text { font-size: 1.15rem; color: var(--white); line-height: 1.7; font-weight: 300; margin-bottom: 20px; }
   .break-text strong { color: var(--gold); font-weight: 700; }
-  .break-foot {
-    font-size: 0.8rem; color: var(--gray2);
-    letter-spacing: 2px; text-transform: uppercase;
-    border-top: 1px solid rgba(212,175,55,0.1);
-    padding-top: 16px;
-  }
+  .break-foot { font-size: 0.8rem; color: var(--gray2); letter-spacing: 2px; text-transform: uppercase; border-top: 1px solid rgba(212,175,55,0.1); padding-top: 16px; }
   .break-foot span { color: var(--gold); }
 
-  /* ——— SECTION 3: O QUE É ——— */
-  #oque {
-    padding: 100px 0;
-    background: var(--black2);
-  }
-  .oque-head { text-align: center; max-width: 650px; margin: 0 auto 60px; }
-  .oque-head .section-label { justify-content: center; }
-  .oque-head .section-label::before { display: none; }
-  .oque-head .gold-line { margin: 20px auto 0; }
-  .features-grid {
+  /* ——— PERSONAS ——— */
+  #personas { padding: 80px 0 100px; background: var(--black); }
+
+  /* FIX 1: colunas com mesma altura — stats box preenche o espaço vazio */
+  .personas-head {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    grid-template-columns: 340px 1fr;
+    gap: 48px;
+    align-items: stretch;
+    margin-bottom: 48px;
   }
-  .feature-card {
-    background: var(--black);
+  .personas-head-right { display: flex; flex-direction: column; }
+  .personas-head-right > div { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+
+  .personas-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.8rem, 3vw, 2.8rem); line-height: 1.05; letter-spacing: 2px; color: var(--white); }
+  .personas-headline em { font-style: normal; color: var(--gold); }
+  .personas-subtext { font-size: 0.9rem; color: var(--gray); line-height: 1.65; font-weight: 300; padding-top: 6px; max-width: 520px; }
+  .personas-subtext strong { color: var(--white); font-weight: 500; }
+
+  .personas-stats { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+  .persona-stat-row { display: flex; align-items: center; gap: 14px; }
+  .persona-stat-pct { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; min-width: 52px; line-height: 1; }
+  .persona-stat-pct.red   { color: #FF5F57; }
+  .persona-stat-pct.amber { color: #FFD700; }
+  .persona-stat-pct.green { color: #3EC87A; }
+  .persona-stat-info { flex: 1; }
+  .persona-stat-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--white); margin-bottom: 5px; }
+  .persona-stat-desc { font-size: 0.75rem; color: var(--gray2); margin-bottom: 5px; }
+  .persona-stat-bar-wrap { height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden; }
+  .persona-stat-bar { height: 100%; border-radius: 2px; animation: bar-grow 2s ease both; }
+  .persona-stat-bar.red   { background: linear-gradient(to right, #FF5F57, rgba(255,95,87,0.4)); }
+  .persona-stat-bar.amber { background: linear-gradient(to right, #FFD700, rgba(255,215,0,0.4)); }
+  .persona-stat-bar.green { background: linear-gradient(to right, #3EC87A, rgba(62,200,122,0.4)); }
+
+  /* Persona cards */
+  .personas-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+  .persona-card {
+    background: var(--black2);
     border: 1px solid rgba(212,175,55,0.1);
     border-radius: 6px;
-    padding: 32px 24px;
-    text-align: center;
+    padding: 28px 22px;
     position: relative;
     overflow: hidden;
     transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
     cursor: default;
+    /* FIX 2: flex column para empurrar a tag pro fundo */
+    display: flex;
+    flex-direction: column;
   }
-  .feature-card::before {
-    content: '';
-    position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-    background: var(--gold);
-    transform: scaleX(0);
-    transition: transform 0.4s;
+  .persona-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+  .persona-card:hover { transform: translateY(-5px); border-color: rgba(212,175,55,0.25); box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
+
+  .persona-card.pc-red::before   { background: linear-gradient(to right, transparent, #FF5F57, transparent); }
+  .persona-card.pc-amber::before { background: linear-gradient(to right, transparent, #FFD700, transparent); }
+  .persona-card.pc-blue::before  { background: linear-gradient(to right, transparent, #4A9EFF, transparent); }
+  .persona-card.pc-green::before { background: linear-gradient(to right, transparent, #3EC87A, transparent); }
+  .persona-card:hover.pc-red   { box-shadow: 0 16px 40px rgba(255,95,87,0.08); }
+  .persona-card:hover.pc-amber { box-shadow: 0 16px 40px rgba(255,215,0,0.06); }
+  .persona-card:hover.pc-blue  { box-shadow: 0 16px 40px rgba(74,158,255,0.08); }
+  .persona-card:hover.pc-green { box-shadow: 0 16px 40px rgba(62,200,122,0.08); }
+
+  .persona-num { font-family: 'Bebas Neue', sans-serif; font-size: 0.85rem; letter-spacing: 3px; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .persona-num::after { content: ''; flex: 1; height: 1px; background: rgba(212,175,55,0.15); }
+  .pc-red   .persona-num { color: #FF5F57; }
+  .pc-amber .persona-num { color: #FFD700; }
+  .pc-blue  .persona-num { color: #4A9EFF; }
+  .pc-green .persona-num { color: #3EC87A; }
+
+  .persona-icon-wrap { width: 52px; height: 52px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 18px; flex-shrink: 0; }
+  .pc-red   .persona-icon-wrap { background: rgba(255,95,87,0.1);   border: 1px solid rgba(255,95,87,0.2); }
+  .pc-amber .persona-icon-wrap { background: rgba(255,215,0,0.08);  border: 1px solid rgba(255,215,0,0.2); }
+  .pc-blue  .persona-icon-wrap { background: rgba(74,158,255,0.08); border: 1px solid rgba(74,158,255,0.2); }
+  .pc-green .persona-icon-wrap { background: rgba(62,200,122,0.08); border: 1px solid rgba(62,200,122,0.2); }
+
+  .persona-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem; letter-spacing: 2px; color: var(--white); margin-bottom: 12px; line-height: 1.1; }
+
+  /* FIX 2: desc cresce para preencher espaço, tag fica sempre no fundo */
+  .persona-desc { font-size: 0.82rem; color: var(--gray); line-height: 1.6; margin-bottom: 20px; flex: 1; }
+
+  .persona-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    padding: 5px 10px; border-radius: 2px;
+    align-self: stretch;   /* tag ocupa largura total do card */
+    margin-top: auto;
+    white-space: nowrap;   /* nunca quebra em 2 linhas */
+    justify-content: center;
   }
-  .feature-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(212,175,55,0.3);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(212,175,55,0.06);
+  .pc-red   .persona-tag { background: rgba(255,95,87,0.1);   border: 1px solid rgba(255,95,87,0.25);   color: #FF5F57; }
+  .pc-amber .persona-tag { background: rgba(255,215,0,0.08);  border: 1px solid rgba(255,215,0,0.25);   color: #FFD700; }
+  .pc-blue  .persona-tag { background: rgba(74,158,255,0.08); border: 1px solid rgba(74,158,255,0.25);  color: #4A9EFF; }
+  .pc-green .persona-tag { background: rgba(62,200,122,0.08); border: 1px solid rgba(62,200,122,0.25);  color: #3EC87A; }
+
+  /* CTA strip — FIX 3: removido botão "conhecer o método" via CSS/HTML */
+  .personas-cta-strip {
+    margin-top: 40px; background: var(--black2); border: 1px solid rgba(212,175,55,0.15);
+    border-radius: 6px; padding: 28px 36px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    position: relative; overflow: hidden;
   }
+  .personas-cta-strip::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
+  .personas-cta-strip-icon { font-size: 2.5rem; flex-shrink: 0; opacity: 0.9; }
+  .personas-cta-strip-text h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 2px; color: var(--white); margin-bottom: 4px; }
+  .personas-cta-strip-text p { font-size: 0.88rem; color: var(--gray); font-weight: 300; line-height: 1.5; }
+  .personas-cta-strip-text p strong { color: var(--gold); font-weight: 600; }
+  .personas-cta-strip-btns { display: flex; gap: 12px; flex-shrink: 0; flex-wrap: wrap; }
+  .btn-strip-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--black); font-weight: 700; font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; padding: 12px 24px; border-radius: 2px; transition: box-shadow 0.3s, transform 0.2s; white-space: nowrap; }
+  .btn-strip-primary:hover { box-shadow: 0 0 24px rgba(212,175,55,0.4); transform: translateY(-1px); }
+
+  /* O QUE É */
+  #oque { padding: 100px 0; background: var(--black2); }
+  .oque-head { text-align: center; max-width: 650px; margin: 0 auto 60px; }
+  .oque-head .section-label { justify-content: center; }
+  .oque-head .section-label::before { display: none; }
+  .oque-head .gold-line { margin: 20px auto 0; }
+  .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .feature-card { background: var(--black); border: 1px solid rgba(212,175,55,0.1); border-radius: 6px; padding: 32px 24px; text-align: center; position: relative; overflow: hidden; transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s; cursor: default; }
+  .feature-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transition: transform 0.4s; }
+  .feature-card:hover { transform: translateY(-6px); border-color: rgba(212,175,55,0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(212,175,55,0.06); }
   .feature-card:hover::before { transform: scaleX(1); }
-  .feature-icon-wrap {
-    width: 64px; height: 64px;
-    border: 1px solid rgba(212,175,55,0.25);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 20px;
-    font-size: 1.6rem;
-    background: rgba(212,175,55,0.04);
-    transition: background 0.3s, border-color 0.3s;
-  }
-  .feature-card:hover .feature-icon-wrap {
-    background: rgba(212,175,55,0.08);
-    border-color: var(--gold);
-  }
-  .feature-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.3rem; letter-spacing: 2px;
-    color: var(--white);
-    margin-bottom: 10px;
-  }
+  .feature-icon-wrap { width: 64px; height: 64px; border: 1px solid rgba(212,175,55,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.6rem; background: rgba(212,175,55,0.04); transition: background 0.3s, border-color 0.3s; }
+  .feature-card:hover .feature-icon-wrap { background: rgba(212,175,55,0.08); border-color: var(--gold); }
+  .feature-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 2px; color: var(--white); margin-bottom: 10px; }
   .feature-desc { font-size: 0.88rem; color: var(--gray); line-height: 1.6; }
 
-  /* ——— SECTION 4: PROVA ——— */
-  #prova {
-    padding: 100px 0;
-    background: var(--black);
-  }
-  .prova-inner {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 80px;
-    align-items: center;
-  }
-  .analysis-mockup {
-    background: var(--black2);
-    border: 1px solid rgba(212,175,55,0.15);
-    border-radius: 8px;
-    overflow: hidden;
-    position: relative;
-  }
-  .am-header {
-    background: var(--black3);
-    border-bottom: 1px solid rgba(212,175,55,0.1);
-    padding: 14px 20px;
-    display: flex; align-items: center; gap: 8px;
-  }
+  /* PROVA */
+  #prova { padding: 100px 0; background: var(--black); }
+  .prova-inner { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; }
+  .analysis-mockup { background: var(--black2); border: 1px solid rgba(212,175,55,0.15); border-radius: 8px; overflow: hidden; position: relative; }
+  .am-header { background: var(--black3); border-bottom: 1px solid rgba(212,175,55,0.1); padding: 14px 20px; display: flex; align-items: center; gap: 8px; }
   .am-dot { width: 8px; height: 8px; border-radius: 50%; }
-  .am-dot.r { background: #FF5F57; }
-  .am-dot.y { background: #FFBD2E; }
-  .am-dot.g { background: #28C840; }
-  .am-title-bar {
-    margin-left: auto; margin-right: auto;
-    font-size: 0.72rem; color: var(--gray2);
-    letter-spacing: 1px;
-  }
+  .am-dot.r { background: #FF5F57; } .am-dot.y { background: #FFBD2E; } .am-dot.g { background: #28C840; }
+  .am-title-bar { margin-left: auto; margin-right: auto; font-size: 0.72rem; color: var(--gray2); letter-spacing: 1px; }
   .am-body { padding: 24px; }
-  .am-analyst {
-    display: flex; align-items: center; gap: 12px;
-    margin-bottom: 16px;
-  }
-  .am-avatar {
-    width: 36px; height: 36px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--gold2), var(--gold));
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 0.8rem; color: var(--black);
-    flex-shrink: 0;
-  }
+  .am-analyst { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .am-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--gold2), var(--gold)); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; color: var(--black); flex-shrink: 0; }
   .am-name { font-weight: 600; font-size: 0.9rem; color: var(--white); }
   .am-role { font-size: 0.72rem; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; }
   .am-time { margin-left: auto; font-size: 0.68rem; color: var(--gray2); }
-
-  .am-text {
-    font-size: 0.88rem; color: var(--gray);
-    line-height: 1.65; margin-bottom: 16px;
-    border-left: 2px solid rgba(212,175,55,0.2);
-    padding-left: 14px;
-  }
+  .am-text { font-size: 0.88rem; color: var(--gray); line-height: 1.65; margin-bottom: 16px; border-left: 2px solid rgba(212,175,55,0.2); padding-left: 14px; }
   .am-text strong { color: var(--white); }
   .am-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
-  .am-tag {
-    font-size: 0.68rem; font-weight: 600;
-    letter-spacing: 1px; text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 2px;
-    background: rgba(212,175,55,0.08);
-    border: 1px solid rgba(212,175,55,0.2);
-    color: var(--gold);
-  }
-  .am-sep {
-    height: 1px;
-    background: rgba(212,175,55,0.08);
-    margin-bottom: 20px;
-  }
-
-  /* SVG chart */
+  .am-tag { font-size: 0.68rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.2); color: var(--gold); }
+  .am-sep { height: 1px; background: rgba(212,175,55,0.08); margin-bottom: 20px; }
   .am-chart-svg { width: 100%; height: 120px; }
-
   .metric-list { margin-top: 10px; display: flex; flex-direction: column; gap: 24px; }
   .metric-item { display: flex; gap: 20px; align-items: flex-start; }
-  .metric-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 3rem; line-height: 1;
-    color: var(--gold);
-    min-width: 80px;
-    letter-spacing: 1px;
-  }
+  .metric-num { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; line-height: 1; color: var(--gold); min-width: 80px; letter-spacing: 1px; }
   .metric-info h4 { font-weight: 600; font-size: 1rem; color: var(--white); margin-bottom: 4px; }
   .metric-info p { font-size: 0.88rem; color: var(--gray); line-height: 1.5; }
-
-  .proof-quote {
-    background: var(--black2);
-    border: 1px solid rgba(212,175,55,0.15);
-    border-left: 3px solid var(--gold);
-    border-radius: 4px;
-    padding: 24px 24px;
-    margin-top: 36px;
-    font-size: 1.05rem;
-    color: var(--white);
-    line-height: 1.65;
-    font-style: italic;
-    font-weight: 300;
-  }
+  .proof-quote { background: var(--black2); border: 1px solid rgba(212,175,55,0.15); border-left: 3px solid var(--gold); border-radius: 4px; padding: 24px; margin-top: 36px; font-size: 1.05rem; color: var(--white); line-height: 1.65; font-style: italic; font-weight: 300; }
   .proof-quote strong { font-style: normal; color: var(--gold); font-weight: 600; }
-  .proof-quote-foot {
-    margin-top: 12px;
-    font-size: 0.78rem; color: var(--gray2);
-    letter-spacing: 1px; font-style: normal;
-  }
+  .proof-quote-foot { margin-top: 12px; font-size: 0.78rem; color: var(--gray2); letter-spacing: 1px; font-style: normal; }
   .proof-quote-foot span { color: var(--gold); }
 
-  /* ——— SECTION 5: COMO FUNCIONA ——— */
-  #como {
-    padding: 100px 0;
-    background: var(--black2);
-  }
+  /* COMO FUNCIONA */
+  #como { padding: 100px 0; background: var(--black2); }
   .como-head { text-align: center; max-width: 600px; margin: 0 auto 70px; }
   .como-head .section-label { justify-content: center; }
   .como-head .section-label::before { display: none; }
   .como-head .gold-line { margin: 20px auto 0; }
-
-  .steps-timeline {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-  }
-  .steps-line {
-    position: absolute;
-    top: 36px; left: 12.5%; right: 12.5%;
-    height: 1px;
-    background: linear-gradient(to right, var(--gold), rgba(212,175,55,0.3), var(--gold));
-    z-index: 0;
-  }
-  .step {
-    text-align: center;
-    position: relative; z-index: 1;
-    padding: 0 16px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
+  .steps-timeline { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+  .steps-line { position: absolute; top: 36px; left: 12.5%; right: 12.5%; height: 1px; background: linear-gradient(to right, var(--gold), rgba(212,175,55,0.3), var(--gold)); z-index: 0; }
+  .step { text-align: center; position: relative; z-index: 1; padding: 0 16px; opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .step.visible { opacity: 1; transform: translateY(0); }
-  .step:nth-child(2) { transition-delay: 0.15s; }
-  .step:nth-child(3) { transition-delay: 0.3s; }
-  .step:nth-child(4) { transition-delay: 0.45s; }
-
-  .step-num {
-    width: 72px; height: 72px;
-    border-radius: 50%;
-    border: 1px solid var(--gold);
-    background: var(--black2);
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 20px;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.8rem;
-    color: var(--gold);
-    position: relative;
-    transition: background 0.3s, box-shadow 0.3s;
-  }
-  .step:hover .step-num {
-    background: rgba(212,175,55,0.08);
-    box-shadow: 0 0 20px rgba(212,175,55,0.2);
-  }
-  .step-icon {
-    font-size: 1.5rem;
-    position: absolute;
-    top: -8px; right: -8px;
-    background: var(--black2);
-    width: 26px; height: 26px;
-    display: flex; align-items: center; justify-content: center;
-    border-radius: 50%;
-    border: 1px solid rgba(212,175,55,0.2);
-    font-size: 0.8rem;
-  }
-  .step h4 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.1rem; letter-spacing: 2px;
-    color: var(--white); margin-bottom: 8px;
-  }
+  .step:nth-child(2) { transition-delay: 0.15s; } .step:nth-child(3) { transition-delay: 0.3s; } .step:nth-child(4) { transition-delay: 0.45s; }
+  .step-num { width: 72px; height: 72px; border-radius: 50%; border: 1px solid var(--gold); background: var(--black2); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--gold); position: relative; transition: background 0.3s, box-shadow 0.3s; }
+  .step:hover .step-num { background: rgba(212,175,55,0.08); box-shadow: 0 0 20px rgba(212,175,55,0.2); }
+  .step-icon { position: absolute; top: -8px; right: -8px; background: var(--black2); width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid rgba(212,175,55,0.2); font-size: 0.8rem; }
+  .step h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 2px; color: var(--white); margin-bottom: 8px; }
   .step p { font-size: 0.85rem; color: var(--gray); line-height: 1.55; }
 
-  /* ——— SECTION 6: PRA QUEM É ——— */
-  #paraquem {
-    padding: 100px 0;
-    background: var(--black);
-  }
+  /* PRA QUEM É */
+  #paraquem { padding: 100px 0; background: var(--black); }
   .paraquem-head { text-align: center; max-width: 600px; margin: 0 auto 60px; }
   .paraquem-head .section-label { justify-content: center; }
   .paraquem-head .section-label::before { display: none; }
   .paraquem-head .gold-line { margin: 20px auto 0; }
-
-  .split-screen {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-  }
-  .split-side {
-    border-radius: 6px;
-    padding: 36px 32px;
-    position: relative;
-    overflow: hidden;
-  }
-  .split-yes {
-    background: var(--green-subtle);
-    border: 1px solid rgba(60,200,120,0.15);
-  }
-  .split-no {
-    background: var(--red-subtle);
-    border: 1px solid rgba(220,60,60,0.12);
-  }
-  .split-side::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  }
+  .split-screen { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .split-side { border-radius: 6px; padding: 36px 32px; position: relative; overflow: hidden; }
+  .split-yes { background: var(--green-subtle); border: 1px solid rgba(60,200,120,0.15); }
+  .split-no  { background: var(--red-subtle);   border: 1px solid rgba(220,60,60,0.12); }
+  .split-side::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
   .split-yes::before { background: linear-gradient(to right, transparent, rgba(60,200,120,0.5), transparent); }
-  .split-no::before { background: linear-gradient(to right, transparent, rgba(220,60,60,0.4), transparent); }
-
-  .split-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.6rem; letter-spacing: 3px;
-    margin-bottom: 28px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .split-yes .split-title { color: #3EC87A; }
-  .split-no .split-title { color: #FF5F57; }
+  .split-no::before  { background: linear-gradient(to right, transparent, rgba(220,60,60,0.4),  transparent); }
+  .split-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 3px; margin-bottom: 28px; display: flex; align-items: center; gap: 12px; }
+  .split-yes .split-title { color: #3EC87A; } .split-no .split-title { color: #FF5F57; }
   .split-emoji { font-size: 1.4rem; }
-
-  .check-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .check-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
   .check-list li {
     display: flex; align-items: flex-start; gap: 12px;
-    font-size: 0.95rem; color: var(--white);
-    line-height: 1.5;
+    font-size: 0.92rem; color: var(--white); line-height: 1.55;
   }
+  /* icon always top-aligned, never shrinks */
   .check-icon {
-    flex-shrink: 0;
-    width: 22px; height: 22px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.75rem; font-weight: 700;
-    margin-top: 1px;
+    flex-shrink: 0; width: 22px; height: 22px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 700; margin-top: 2px;
   }
   .check-icon.yes { background: rgba(60,200,120,0.15); color: #3EC87A; border: 1px solid rgba(60,200,120,0.3); }
-  .check-icon.no { background: rgba(220,60,60,0.1); color: #FF5F57; border: 1px solid rgba(220,60,60,0.25); }
+  .check-icon.no  { background: rgba(220,60,60,0.1);   color: #FF5F57; border: 1px solid rgba(220,60,60,0.25); }
+  /* text wrapper: block so bold never creates inline columns */
+  .check-text { display: block; }
+  .check-text strong { font-weight: 700; color: var(--white); }
 
-  /* ——— SECTION 7: CTA FINAL ——— */
-  #cta {
-    padding: 120px 0;
-    position: relative;
-    overflow: hidden;
-  }
-  .cta-bg {
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 60% 60% at 50% 0%, rgba(212,175,55,0.12) 0%, transparent 70%),
-      radial-gradient(ellipse 30% 50% at 80% 100%, rgba(212,175,55,0.06) 0%, transparent 60%),
-      linear-gradient(to bottom, var(--black), rgba(18,14,5,1), var(--black));
-  }
-  .cta-inner {
-    position: relative; z-index: 2;
-    text-align: center;
-    max-width: 720px;
-    margin: 0 auto;
-  }
+  /* CTA FINAL */
+  #cta { padding: 120px 0; position: relative; overflow: hidden; }
+  .cta-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 50% 0%, rgba(212,175,55,0.12) 0%, transparent 70%), radial-gradient(ellipse 30% 50% at 80% 100%, rgba(212,175,55,0.06) 0%, transparent 60%), linear-gradient(to bottom, var(--black), rgba(18,14,5,1), var(--black)); }
+  .cta-inner { position: relative; z-index: 2; text-align: center; max-width: 720px; margin: 0 auto; }
   .cta-inner .section-label { justify-content: center; }
   .cta-inner .section-label::before { display: none; }
-  .cta-h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.4rem, 5vw, 4.2rem);
-    line-height: 1.0; letter-spacing: 2px;
-    color: var(--white);
-    margin: 16px 0 12px;
-  }
+  .cta-h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.4rem, 5vw, 4.2rem); line-height: 1.0; letter-spacing: 2px; color: var(--white); margin: 16px 0 12px; }
   .cta-h2 span { color: var(--gold); }
-  .cta-sub {
-    font-size: 1.05rem; color: var(--gray);
-    line-height: 1.7; font-weight: 300;
-    margin-bottom: 48px;
-  }
+  .cta-sub { font-size: 1.05rem; color: var(--gray); line-height: 1.7; font-weight: 300; margin-bottom: 48px; }
   .cta-btns { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
-  .btn-primary-lg {
-    display: inline-flex; align-items: center; gap: 12px;
-    background: var(--gold);
-    color: var(--black);
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 18px 44px;
-    border-radius: 2px;
-    position: relative; overflow: hidden;
-    transition: box-shadow 0.3s, transform 0.2s;
-    box-shadow: 0 0 0 rgba(212,175,55,0);
-  }
-  .btn-primary-lg::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.5s;
-  }
-  .btn-primary-lg:hover {
-    box-shadow: 0 0 40px rgba(212,175,55,0.5), 0 0 80px rgba(212,175,55,0.15);
-    transform: translateY(-2px);
-  }
+  .btn-primary-lg { display: inline-flex; align-items: center; gap: 12px; background: var(--gold); color: var(--black); font-weight: 700; font-size: 1rem; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; padding: 18px 44px; border-radius: 2px; position: relative; overflow: hidden; transition: box-shadow 0.3s, transform 0.2s; }
+  .btn-primary-lg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent); transform: translateX(-100%); transition: transform 0.5s; }
+  .btn-primary-lg:hover { box-shadow: 0 0 40px rgba(212,175,55,0.5), 0 0 80px rgba(212,175,55,0.15); transform: translateY(-2px); }
   .btn-primary-lg:hover::after { transform: translateX(100%); }
-
-  .cta-perks {
-    display: flex; justify-content: center; gap: 36px; flex-wrap: wrap;
-  }
-  .cta-perk {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 0.82rem; color: var(--gray2);
-    letter-spacing: 0.5px;
-  }
+  .cta-perks { display: flex; justify-content: center; gap: 36px; flex-wrap: wrap; }
+  .cta-perk { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--gray2); letter-spacing: 0.5px; }
   .cta-perk-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+  .cta-rings { position: absolute; width: 500px; height: 500px; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; z-index: 0; }
+  .cta-ring { position: absolute; border-radius: 50%; border: 1px solid rgba(212,175,55,0.05); top: 50%; left: 50%; transform: translate(-50%, -50%); animation: ring-expand 6s ease-in-out infinite; }
+  .cta-ring:nth-child(1) { width: 200px; height: 200px; } .cta-ring:nth-child(2) { width: 350px; height: 350px; animation-delay: 1s; } .cta-ring:nth-child(3) { width: 500px; height: 500px; animation-delay: 2s; }
+  @keyframes ring-expand { 0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); } 50% { opacity: 1; transform: translate(-50%, -50%) scale(1.02); } }
 
-  /* Decorative rings */
-  .cta-rings {
-    position: absolute;
-    width: 500px; height: 500px;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 0;
-  }
-  .cta-ring {
-    position: absolute; border-radius: 50%;
-    border: 1px solid rgba(212,175,55,0.05);
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    animation: ring-expand 6s ease-in-out infinite;
-  }
-  .cta-ring:nth-child(1) { width: 200px; height: 200px; animation-delay: 0s; }
-  .cta-ring:nth-child(2) { width: 350px; height: 350px; animation-delay: 1s; }
-  .cta-ring:nth-child(3) { width: 500px; height: 500px; animation-delay: 2s; }
-  @keyframes ring-expand {
-    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.02); }
-  }
-
-  /* ——— FOOTER ——— */
-  footer {
-    background: var(--black2);
-    border-top: 1px solid rgba(212,175,55,0.1);
-    padding: 48px 0 32px;
-  }
-  .footer-inner {
-    display: flex; justify-content: space-between;
-    align-items: center; flex-wrap: wrap; gap: 24px;
-  }
-  .footer-logo {
-    display: flex; align-items: center; gap: 10px;
-  }
+  /* FOOTER */
+  footer { background: var(--black2); border-top: 1px solid rgba(212,175,55,0.1); padding: 48px 0 32px; }
   .footer-logo img { height: 36px; }
-  .footer-logo span {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.4rem; letter-spacing: 3px; color: var(--gold);
-  }
   .footer-copy { font-size: 0.8rem; color: var(--gray2); }
   .footer-copy span { color: var(--gold); }
-  .footer-links { display: flex; gap: 24px; }
-  .footer-links a {
-    color: var(--gray2); text-decoration: none;
-    font-size: 0.8rem; transition: color 0.2s;
-  }
-  .footer-links a:hover { color: var(--gold); }
 
-  /* ——— MOBILE ——— */
-  .hamburger {
-    display: none;
-    flex-direction: column; gap: 5px;
-    background: none; border: none; cursor: pointer; padding: 4px;
-  }
-  .hamburger span {
-    display: block; width: 24px; height: 1.5px;
-    background: var(--gold); transition: all 0.3s;
-  }
+  /* HAMBURGER */
+  .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--gold); transition: all 0.3s; }
 
-  @media (max-width: 1024px) {
-    .features-grid { grid-template-columns: repeat(2, 1fr); }
-    .steps-timeline { grid-template-columns: repeat(2, 1fr); gap: 40px; }
-    .steps-line { display: none; }
-  }
-
-  /* ——— CHART WIDGET (Hero Right) ——— */
-  .chart-widget {
-    background: var(--black2);
-    border: 1px solid rgba(212,175,55,0.2);
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    max-width: 480px;
-    margin: 0 auto;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 40px rgba(212,175,55,0.04);
-  }
-  .chart-widget::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(to right, transparent, var(--gold), transparent);
-  }
-  .cw-topbar {
-    display: flex; align-items: center; gap: 12px;
-    padding: 14px 18px;
-    background: var(--black3);
-    border-bottom: 1px solid rgba(212,175,55,0.08);
-    flex-wrap: wrap;
-  }
+  /* CHART WIDGET */
+  .chart-widget { background: var(--black2); border: 1px solid rgba(212,175,55,0.2); border-radius: 10px; overflow: hidden; position: relative; width: 100%; max-width: 480px; margin: 0 auto; box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 40px rgba(212,175,55,0.04); }
+  .chart-widget::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
+  .cw-topbar { display: flex; align-items: center; gap: 12px; padding: 14px 18px; background: var(--black3); border-bottom: 1px solid rgba(212,175,55,0.08); flex-wrap: wrap; }
   .cw-pair { display: flex; align-items: center; gap: 7px; }
-  .cw-coin {
-    width: 26px; height: 26px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--gold2), var(--gold3));
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.8rem; font-weight: 700; color: var(--black);
-    flex-shrink: 0;
-  }
+  .cw-coin { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, var(--gold2), var(--gold3)); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; color: var(--black); flex-shrink: 0; }
   .cw-name { font-weight: 700; font-size: 0.9rem; color: var(--white); letter-spacing: 0.5px; }
   .cw-price-block { margin-left: auto; display: flex; flex-direction: column; align-items: flex-end; }
-  .cw-price {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.25rem; font-weight: 700; color: var(--white); line-height: 1;
-  }
+  .cw-price { font-family: 'Barlow Condensed', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--white); line-height: 1; }
   .cw-change { font-size: 0.72rem; font-weight: 600; color: #3EC87A; }
-  .cw-chart-area {
-    display: flex;
-    padding: 12px 14px 0;
-    gap: 8px;
-  }
-  .cw-yaxis {
-    display: flex; flex-direction: column; justify-content: space-between;
-    font-size: 0.6rem; color: var(--gray2);
-    padding: 4px 0;
-    min-width: 34px;
-    text-align: right;
-  }
+  .cw-chart-area { display: flex; padding: 12px 14px 0; gap: 8px; }
+  .cw-yaxis { display: flex; flex-direction: column; justify-content: space-between; font-size: 0.6rem; color: var(--gray2); padding: 4px 0; min-width: 34px; text-align: right; }
   .cw-canvas { flex: 1; }
   .cw-canvas svg { width: 100%; height: 200px; display: block; }
-  .cw-xaxis {
-    display: flex; justify-content: space-between;
-    padding: 4px 52px 8px;
-    font-size: 0.6rem; color: var(--gray2);
-  }
-  .cw-stats-row {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    border-top: 1px solid rgba(212,175,55,0.08);
-    padding: 12px 16px;
-    gap: 8px;
-  }
+  .cw-xaxis { display: flex; justify-content: space-between; padding: 4px 52px 8px; font-size: 0.6rem; color: var(--gray2); }
+  .cw-stats-row { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgba(212,175,55,0.08); padding: 12px 16px; gap: 8px; }
   .cw-stat { display: flex; flex-direction: column; align-items: center; gap: 3px; }
   .cw-stat-lbl { font-size: 0.6rem; color: var(--gray2); letter-spacing: 0.5px; text-transform: uppercase; }
   .cw-stat-val { font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--white); }
   .cw-stat-val.gold { color: var(--gold); }
-
-  /* Floating badges */
-  .chart-badge {
-    position: absolute;
-    background: var(--black3);
-    border: 1px solid rgba(212,175,55,0.2);
-    border-radius: 8px;
-    padding: 10px 14px;
-    display: flex; align-items: center; gap: 10px;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-    z-index: 10;
-  }
+  .chart-badge { position: absolute; background: var(--black3); border: 1px solid rgba(212,175,55,0.2); border-radius: 8px; padding: 10px 14px; display: flex; align-items: center; gap: 10px; backdrop-filter: blur(8px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); z-index: 10; }
   .badge-tl { top: -18px; left: -18px; animation: float1 5s ease-in-out infinite; }
   .badge-br { bottom: -18px; right: -18px; animation: float2 6s ease-in-out infinite; }
   .badge-icon { font-size: 1.2rem; }
   .badge-lbl { font-size: 0.62rem; color: var(--gray2); letter-spacing: 1px; text-transform: uppercase; }
   .badge-val { font-weight: 700; font-size: 0.88rem; color: var(--gold); display: flex; align-items: center; gap: 4px; }
+  .hero-visual { position: relative; display: flex; align-items: center; justify-content: center; padding: 30px 24px; }
 
-  /* Hero visual wrapper */
-  .hero-visual {
-    position: relative;
-    display: flex; align-items: center; justify-content: center;
-    padding: 30px 24px;
+  /* ANIMATIONS */
+  @keyframes bar-grow { from { transform: scaleX(0); transform-origin: left; } to { transform: scaleX(1); transform-origin: left; } }
+  .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #3EC87A; animation: pulse-green 2s infinite; }
+  @keyframes pulse-green { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .card-live { display: flex; align-items: center; gap: 6px; font-size: 0.68rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #3EC87A; }
+  @keyframes float1 { 0%, 100% { transform: translateY(0) rotate(1deg); } 50% { transform: translateY(-10px) rotate(-1deg); } }
+  @keyframes float2 { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(10px) rotate(1deg); } }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps-timeline { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+    .steps-line { display: none; }
+    .personas-grid { grid-template-columns: repeat(2, 1fr); }
+    .personas-head { grid-template-columns: 1fr; gap: 32px; }
+    .personas-cta-strip { flex-direction: column; text-align: center; }
+    .personas-cta-strip-btns { justify-content: center; }
   }
 
   @media (max-width: 768px) {
     .nav-links { display: none; }
-    .nav-links.open {
-      display: flex; flex-direction: column;
-      position: fixed; top: 70px; left: 0; right: 0;
-      background: rgba(11,11,11,0.98);
-      border-bottom: 1px solid rgba(212,175,55,0.1);
-      padding: 24px 32px;
-      gap: 20px;
-    }
+    .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 70px; left: 0; right: 0; background: rgba(11,11,11,0.98); border-bottom: 1px solid rgba(212,175,55,0.1); padding: 24px 32px; gap: 20px; }
     .hamburger { display: flex; }
+    .scroll-indicator { display: none; }
     .hero-inner { grid-template-columns: 1fr; gap: 60px; }
     .hero-visual { display: none; }
     .problema-inner { grid-template-columns: 1fr; gap: 40px; }
     .prova-inner { grid-template-columns: 1fr; gap: 40px; }
-    .split-screen { grid-template-columns: 1fr; }
+    .split-screen { grid-template-columns: 1fr; gap: 16px; }
+    .split-side { padding: 24px 18px; }
+    .check-list li { font-size: 0.88rem; }
+    .split-title { font-size: 1.3rem; margin-bottom: 20px; }
     .features-grid { grid-template-columns: 1fr; }
     .steps-timeline { grid-template-columns: 1fr; }
     .footer-inner { flex-direction: column; text-align: center; }
+    .personas-grid { grid-template-columns: 1fr; gap: 12px; }
+    .personas-head { grid-template-columns: 1fr; gap: 24px; }
+    .personas-cta-strip { padding: 24px 20px; flex-direction: column; text-align: center; }
+    .personas-cta-strip-btns { justify-content: center; flex-direction: column; width: 100%; }
+    .btn-strip-primary { justify-content: center; width: 100%; }
   }
 </style>
 </head>
@@ -1098,7 +446,7 @@
       <li><a href="#prova">Prova</a></li>
       <li><a href="#como">Como Funciona</a></li>
       <li><a href="#paraquem">Pra Quem</a></li>
-      <li><a href="https://portal.monkborg.com" class="nav-cta" target="_blank">Portal do Trader</a></li>
+      <li><a href="https://portal.monkborg.com" class="nav-cta">Portal do Trader</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -1106,16 +454,14 @@
   </div>
 </nav>
 
-<!-- ——— HERO ——— -->
+<!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid-lines"></div>
   <div class="container">
     <div class="hero-inner">
       <div class="hero-content">
-        <div class="hero-label reveal">
-          Comunidade Premium de Trading
-        </div>
+        <div class="hero-label reveal">Comunidade Premium de Trading</div>
         <h1 class="hero-h1 reveal">
           Domine o mercado cripto
           <em>com leitura profissional,</em>
@@ -1129,115 +475,70 @@
             <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M15.25 1.17A15.3 15.3 0 0 0 11.52 0c-.17.3-.36.7-.5 1.02a14.1 14.1 0 0 0-4.04 0C6.84.7 6.65.3 6.48 0A15.32 15.32 0 0 0 2.75 1.17C.39 4.75-.24 8.24.08 11.67a15.4 15.4 0 0 0 4.69 2.37c.38-.52.72-1.07 1.01-1.64a9.99 9.99 0 0 1-1.59-.76c.13-.1.26-.2.38-.3a11 11 0 0 0 9.44 0c.12.1.26.2.38.3-.52.3-1.05.56-1.6.76.29.57.63 1.12 1.01 1.64a15.3 15.3 0 0 0 4.68-2.37c.39-4-.67-7.46-2.83-10.5ZM6 9.56c-.87 0-1.59-.8-1.59-1.78 0-.99.7-1.79 1.59-1.79.88 0 1.6.8 1.59 1.79 0 .98-.71 1.78-1.59 1.78Zm6 0c-.87 0-1.59-.8-1.59-1.78 0-.99.7-1.79 1.59-1.79.88 0 1.6.8 1.59 1.79 0 .98-.7 1.78-1.59 1.78Z" fill="currentColor"/></svg>
             Entrar no Discord
           </a>
-          <a href="#oque" class="btn-secondary">
-            Ver como funciona
-            <span class="arrow">→</span>
-          </a>
+          <a href="#oque" class="btn-secondary">Ver como funciona <span class="arrow">→</span></a>
         </div>
       </div>
 
       <div class="hero-visual reveal-right">
         <div class="chart-widget">
-
-          <!-- Top bar -->
           <div class="cw-topbar">
             <div class="cw-pair">
               <span class="cw-coin">₿</span>
               <span class="cw-name">BTC / USDT</span>
             </div>
             <div class="cw-price-block">
-              <span class="cw-price" id="heroPrice">68,420.50</span>
+              <span class="cw-price">68,420.50</span>
               <span class="cw-change">▲ +3.41%</span>
             </div>
-            <div class="card-live">
-              <span class="live-dot"></span> Ao Vivo
-            </div>
+            <div class="card-live"><span class="live-dot"></span> Ao Vivo</div>
           </div>
-
-          <!-- Candlestick SVG Chart -->
           <div class="cw-chart-area">
-            <!-- Y-axis labels -->
-            <div class="cw-yaxis">
-              <span>69.8k</span>
-              <span>68.9k</span>
-              <span>68.0k</span>
-              <span>67.1k</span>
-              <span>66.2k</span>
-            </div>
+            <div class="cw-yaxis"><span>69.8k</span><span>68.9k</span><span>68.0k</span><span>67.1k</span><span>66.2k</span></div>
             <div class="cw-canvas">
-              <svg id="candleChart" viewBox="0 0 420 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+              <svg viewBox="0 0 420 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                  <linearGradient id="bullGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#D4AF37"/>
-                    <stop offset="100%" stop-color="#B8962E"/>
-                  </linearGradient>
-                  <linearGradient id="bearGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#444"/>
-                    <stop offset="100%" stop-color="#2a2a2a"/>
-                  </linearGradient>
-                  <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.18"/>
-                    <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
-                  </linearGradient>
-                  <filter id="glowCandle">
-                    <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
-                    <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                  </filter>
+                  <linearGradient id="bullGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#D4AF37"/><stop offset="100%" stop-color="#B8962E"/></linearGradient>
+                  <linearGradient id="bearGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#444"/><stop offset="100%" stop-color="#2a2a2a"/></linearGradient>
+                  <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#D4AF37" stop-opacity="0.18"/><stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/></linearGradient>
+                  <filter id="glowCandle"><feGaussianBlur stdDeviation="1.5" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
                 </defs>
-
-                <!-- Horizontal grid lines -->
                 <line x1="30" y1="10" x2="420" y2="10" stroke="rgba(212,175,55,0.07)" stroke-width="1"/>
                 <line x1="30" y1="52" x2="420" y2="52" stroke="rgba(212,175,55,0.07)" stroke-width="1"/>
                 <line x1="30" y1="100" x2="420" y2="100" stroke="rgba(212,175,55,0.07)" stroke-width="1"/>
                 <line x1="30" y1="148" x2="420" y2="148" stroke="rgba(212,175,55,0.07)" stroke-width="1"/>
                 <line x1="30" y1="190" x2="420" y2="190" stroke="rgba(212,175,55,0.07)" stroke-width="1"/>
-
-                <!-- MA line (golden) -->
-                <polyline points="45,155 70,140 95,148 120,125 145,130 170,108 195,115 220,90 245,98 270,75 295,82 320,60 345,68 370,45 395,52 420,38"
-                  fill="none" stroke="rgba(212,175,55,0.5)" stroke-width="1.5" stroke-dasharray="4,3"/>
-
-                <!-- Area fill under price line -->
-                <path d="M45,148 L70,132 L95,140 L120,118 L145,122 L170,98 L195,106 L220,82 L245,90 L270,66 L295,74 L320,50 L345,58 L370,36 L395,44 L420,30 L420,200 L45,200 Z"
-                  fill="url(#areaGrad)"/>
-
-                <!-- Price line -->
-                <polyline points="45,148 70,132 95,140 120,118 145,122 170,98 195,106 220,82 245,90 270,66 295,74 320,50 345,58 370,36 395,44 420,30"
-                  fill="none" stroke="#D4AF37" stroke-width="2" filter="url(#glowCandle)"/>
-
-                <!-- Candlesticks — bullish (gold), bearish (dark) -->
-                <!-- c1 bull --> <line x1="46" y1="158" x2="46" y2="138" stroke="#D4AF37" stroke-width="1"/><rect x="42" y="142" width="8" height="12" fill="url(#bullGrad)" rx="1"/>
-                <!-- c2 bear --> <line x1="71" y1="145" x2="71" y2="122" stroke="#555" stroke-width="1"/><rect x="67" y="128" width="8" height="14" fill="url(#bearGrad)" rx="1" stroke="#555" stroke-width="0.5"/>
-                <!-- c3 bull --> <line x1="96" y1="152" x2="96" y2="130" stroke="#D4AF37" stroke-width="1"/><rect x="92" y="134" width="8" height="13" fill="url(#bullGrad)" rx="1"/>
-                <!-- c4 bull --> <line x1="121" y1="130" x2="121" y2="108" stroke="#D4AF37" stroke-width="1"/><rect x="117" y="112" width="8" height="12" fill="url(#bullGrad)" rx="1"/>
-                <!-- c5 bear --> <line x1="146" y1="136" x2="146" y2="112" stroke="#555" stroke-width="1"/><rect x="142" y="118" width="8" height="14" fill="url(#bearGrad)" rx="1" stroke="#555" stroke-width="0.5"/>
-                <!-- c6 bull --> <line x1="171" y1="112" x2="171" y2="88" stroke="#D4AF37" stroke-width="1"/><rect x="167" y="92" width="8" height="13" fill="url(#bullGrad)" rx="1"/>
-                <!-- c7 bear --> <line x1="196" y1="120" x2="196" y2="96" stroke="#555" stroke-width="1"/><rect x="192" y="100" width="8" height="15" fill="url(#bearGrad)" rx="1" stroke="#555" stroke-width="0.5"/>
-                <!-- c8 bull --> <line x1="221" y1="95" x2="221" y2="72" stroke="#D4AF37" stroke-width="1"/><rect x="217" y="76" width="8" height="13" fill="url(#bullGrad)" rx="1"/>
-                <!-- c9 bull --> <line x1="246" y1="103" x2="246" y2="80" stroke="#D4AF37" stroke-width="1"/><rect x="242" y="84" width="8" height="12" fill="url(#bullGrad)" rx="1"/>
-                <!-- c10 bull--> <line x1="271" y1="80" x2="271" y2="56" stroke="#D4AF37" stroke-width="1" filter="url(#glowCandle)"/><rect x="267" y="60" width="8" height="14" fill="url(#bullGrad)" rx="1" filter="url(#glowCandle)"/>
-                <!-- c11 bear--> <line x1="296" y1="90" x2="296" y2="64" stroke="#555" stroke-width="1"/><rect x="292" y="70" width="8" height="14" fill="url(#bearGrad)" rx="1" stroke="#555" stroke-width="0.5"/>
-                <!-- c12 bull--> <line x1="321" y1="65" x2="321" y2="40" stroke="#D4AF37" stroke-width="1" filter="url(#glowCandle)"/><rect x="317" y="44" width="8" height="14" fill="url(#bullGrad)" rx="1" filter="url(#glowCandle)"/>
-                <!-- c13 bull--> <line x1="346" y1="72" x2="346" y2="48" stroke="#D4AF37" stroke-width="1"/><rect x="342" y="52" width="8" height="13" fill="url(#bullGrad)" rx="1"/>
-                <!-- c14 bull--> <line x1="371" y1="50" x2="371" y2="26" stroke="#D4AF37" stroke-width="1" filter="url(#glowCandle)"/><rect x="367" y="30" width="8" height="14" fill="url(#bullGrad)" rx="1" filter="url(#glowCandle)"/>
-                <!-- c15 bull--> <line x1="396" y1="45" x2="396" y2="20" stroke="#D4AF37" stroke-width="1" filter="url(#glowCandle)"/><rect x="392" y="24" width="8" height="14" fill="url(#bullGrad)" rx="1" filter="url(#glowCandle)"/>
-
-                <!-- Current price line -->
+                <polyline points="45,155 70,140 95,148 120,125 145,130 170,108 195,115 220,90 245,98 270,75 295,82 320,60 345,68 370,45 395,52 420,38" fill="none" stroke="rgba(212,175,55,0.5)" stroke-width="1.5" stroke-dasharray="4,3"/>
+                <path d="M45,148 L70,132 L95,140 L120,118 L145,122 L170,98 L195,106 L220,82 L245,90 L270,66 L295,74 L320,50 L345,58 L370,36 L395,44 L420,30 L420,200 L45,200 Z" fill="url(#areaGrad)"/>
+                <polyline points="45,148 70,132 95,140 120,118 145,122 170,98 195,106 220,82 245,90 270,66 295,74 320,50 345,58 370,36 395,44 420,30" fill="none" stroke="#D4AF37" stroke-width="2" filter="url(#glowCandle)"/>
+                <line x1="46" y1="158" x2="46" y2="138" stroke="#D4AF37" stroke-width="1"/><rect x="42" y="142" width="8" height="12" fill="url(#bullGrad)" rx="1"/>
+                <line x1="71" y1="145" x2="71" y2="122" stroke="#555" stroke-width="1"/><rect x="67" y="128" width="8" height="14" fill="url(#bearGrad)" rx="1"/>
+                <line x1="96" y1="152" x2="96" y2="130" stroke="#D4AF37" stroke-width="1"/><rect x="92" y="134" width="8" height="13" fill="url(#bullGrad)" rx="1"/>
+                <line x1="121" y1="130" x2="121" y2="108" stroke="#D4AF37" stroke-width="1"/><rect x="117" y="112" width="8" height="12" fill="url(#bullGrad)" rx="1"/>
+                <line x1="146" y1="136" x2="146" y2="112" stroke="#555" stroke-width="1"/><rect x="142" y="118" width="8" height="14" fill="url(#bearGrad)" rx="1"/>
+                <line x1="171" y1="112" x2="171" y2="88" stroke="#D4AF37" stroke-width="1"/><rect x="167" y="92" width="8" height="13" fill="url(#bullGrad)" rx="1"/>
+                <line x1="196" y1="120" x2="196" y2="96" stroke="#555" stroke-width="1"/><rect x="192" y="100" width="8" height="15" fill="url(#bearGrad)" rx="1"/>
+                <line x1="221" y1="95" x2="221" y2="72" stroke="#D4AF37" stroke-width="1"/><rect x="217" y="76" width="8" height="13" fill="url(#bullGrad)" rx="1"/>
+                <line x1="246" y1="103" x2="246" y2="80" stroke="#D4AF37" stroke-width="1"/><rect x="242" y="84" width="8" height="12" fill="url(#bullGrad)" rx="1"/>
+                <line x1="271" y1="80" x2="271" y2="56" stroke="#D4AF37" stroke-width="1" filter="url(#glowCandle)"/><rect x="267" y="60" width="8" height="14" fill="url(#bullGrad)" rx="1" filter="url(#glowCandle)"/>
+                <line x1="296" y1="90" x2="296" y2="64" stroke="#555" stroke-width="1"/><rect x="292" y="70" width="8" height="14" fill="url(#bearGrad)" rx="1"/>
+                <line x1="321" y1="65" x2="321" y2="40" stroke="#D4AF37" stroke-width="1" filter="url(#glowCandle)"/><rect x="317" y="44" width="8" height="14" fill="url(#bullGrad)" rx="1" filter="url(#glowCandle)"/>
+                <line x1="346" y1="72" x2="346" y2="48" stroke="#D4AF37" stroke-width="1"/><rect x="342" y="52" width="8" height="13" fill="url(#bullGrad)" rx="1"/>
+                <line x1="371" y1="50" x2="371" y2="26" stroke="#D4AF37" stroke-width="1" filter="url(#glowCandle)"/><rect x="367" y="30" width="8" height="14" fill="url(#bullGrad)" rx="1" filter="url(#glowCandle)"/>
+                <line x1="396" y1="45" x2="396" y2="20" stroke="#D4AF37" stroke-width="1" filter="url(#glowCandle)"/><rect x="392" y="24" width="8" height="14" fill="url(#bullGrad)" rx="1" filter="url(#glowCandle)"/>
                 <line x1="30" y1="30" x2="420" y2="30" stroke="rgba(212,175,55,0.4)" stroke-width="1" stroke-dasharray="5,4"/>
                 <rect x="0" y="22" width="30" height="14" fill="#D4AF37" rx="2"/>
                 <text x="15" y="32" text-anchor="middle" font-family="monospace" font-size="7" fill="#0B0B0B" font-weight="bold">LIVE</text>
-
-                <!-- Volume bars (bottom strip) -->
                 <rect x="42" y="178" width="8" height="12" fill="rgba(212,175,55,0.25)" rx="1"/>
-                <rect x="67" y="182" width="8" height="8" fill="rgba(80,80,80,0.4)" rx="1"/>
+                <rect x="67" y="182" width="8" height="8"  fill="rgba(80,80,80,0.4)"    rx="1"/>
                 <rect x="92" y="176" width="8" height="14" fill="rgba(212,175,55,0.25)" rx="1"/>
                 <rect x="117" y="174" width="8" height="16" fill="rgba(212,175,55,0.3)" rx="1"/>
-                <rect x="142" y="183" width="8" height="7" fill="rgba(80,80,80,0.4)" rx="1"/>
+                <rect x="142" y="183" width="8" height="7"  fill="rgba(80,80,80,0.4)"   rx="1"/>
                 <rect x="167" y="172" width="8" height="18" fill="rgba(212,175,55,0.35)" rx="1"/>
-                <rect x="192" y="181" width="8" height="9" fill="rgba(80,80,80,0.4)" rx="1"/>
+                <rect x="192" y="181" width="8" height="9"  fill="rgba(80,80,80,0.4)"   rx="1"/>
                 <rect x="217" y="170" width="8" height="20" fill="rgba(212,175,55,0.4)" rx="1"/>
                 <rect x="242" y="175" width="8" height="15" fill="rgba(212,175,55,0.3)" rx="1"/>
                 <rect x="267" y="168" width="8" height="22" fill="rgba(212,175,55,0.45)" rx="1"/>
-                <rect x="292" y="180" width="8" height="10" fill="rgba(80,80,80,0.4)" rx="1"/>
+                <rect x="292" y="180" width="8" height="10" fill="rgba(80,80,80,0.4)"   rx="1"/>
                 <rect x="317" y="165" width="8" height="25" fill="rgba(212,175,55,0.5)" rx="1"/>
                 <rect x="342" y="173" width="8" height="17" fill="rgba(212,175,55,0.35)" rx="1"/>
                 <rect x="367" y="162" width="8" height="28" fill="rgba(212,175,55,0.55)" rx="1"/>
@@ -1245,65 +546,34 @@
               </svg>
             </div>
           </div>
-
-          <!-- X-axis labels -->
-          <div class="cw-xaxis">
-            <span>18:00</span><span>19:00</span><span>20:00</span><span>21:00</span><span>22:00</span><span>23:00</span>
-          </div>
-
-          <!-- Bottom stats row -->
+          <div class="cw-xaxis"><span>18:00</span><span>19:00</span><span>20:00</span><span>21:00</span><span>22:00</span><span>23:00</span></div>
           <div class="cw-stats-row">
-            <div class="cw-stat">
-              <span class="cw-stat-lbl">Abertura</span>
-              <span class="cw-stat-val">66,142</span>
-            </div>
-            <div class="cw-stat">
-              <span class="cw-stat-lbl">Máxima</span>
-              <span class="cw-stat-val gold">69,810</span>
-            </div>
-            <div class="cw-stat">
-              <span class="cw-stat-lbl">Mínima</span>
-              <span class="cw-stat-val">65,900</span>
-            </div>
-            <div class="cw-stat">
-              <span class="cw-stat-lbl">Volume 24h</span>
-              <span class="cw-stat-val">$2.4B</span>
-            </div>
+            <div class="cw-stat"><span class="cw-stat-lbl">Abertura</span><span class="cw-stat-val">66,142</span></div>
+            <div class="cw-stat"><span class="cw-stat-lbl">Máxima</span><span class="cw-stat-val gold">69,810</span></div>
+            <div class="cw-stat"><span class="cw-stat-lbl">Mínima</span><span class="cw-stat-val">65,900</span></div>
+            <div class="cw-stat"><span class="cw-stat-lbl">Volume 24h</span><span class="cw-stat-val">$2.4B</span></div>
           </div>
-
         </div>
-
-        <!-- Floating badges -->
         <div class="chart-badge badge-tl">
           <span class="badge-icon">📈</span>
-          <div>
-            <div class="badge-lbl">Tendência</div>
-            <div class="badge-val">Alta ↗</div>
-          </div>
+          <div><div class="badge-lbl">Tendência</div><div class="badge-val">Alta ↗</div></div>
         </div>
         <div class="chart-badge badge-br">
           <span class="badge-icon">👥</span>
           <div>
             <div class="badge-lbl">Analistas online</div>
-            <div class="badge-val" style="color:#3EC87A">
-              <span class="live-dot" style="display:inline-block;margin-right:4px"></span>3 ao vivo
-            </div>
+            <div class="badge-val" style="color:#3EC87A"><span class="live-dot" style="display:inline-block;margin-right:4px"></span>3 ao vivo</div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
-
-  <div class="scroll-indicator">
-    <div class="scroll-arrow"></div>
-    <span>scroll</span>
-  </div>
+  <div class="scroll-indicator"><div class="scroll-arrow"></div><span>scroll</span></div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ——— PROBLEMA ——— -->
+<!-- PROBLEMA -->
 <section id="problema">
   <div class="container">
     <div class="problema-inner">
@@ -1349,35 +619,17 @@
             Não é sobre <strong>estratégia milagrosa</strong>. Não é sobre o melhor indicador.<br><br>
             É sobre <strong>entender o comportamento do mercado</strong> — e construir uma leitura própria, consistente e baseada em lógica real.
           </p>
-          <div class="break-foot">
-            — Fundamento da <span>MonkBorg</span>
-          </div>
+          <div class="break-foot">— Fundamento da <span>MonkBorg</span></div>
         </div>
-
         <div style="margin-top: 24px; background: var(--black2); border: 1px solid rgba(212,175,55,0.1); border-radius: 6px; padding: 28px;">
           <div style="font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px;">Realidade do mercado</div>
           <div style="display: flex; flex-direction: column; gap: 10px;">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <span style="font-size: 0.88rem; color: var(--gray);">Traders que perdem consistentemente</span>
-              <span style="font-family: 'Bebas Neue'; font-size: 1.2rem; color: #FF5F57;">87%</span>
-            </div>
-            <div style="height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden;">
-              <div style="height: 100%; width: 87%; background: linear-gradient(to right, #FF5F57, rgba(255,95,87,0.5)); border-radius: 2px; animation: bar-grow 2s ease both;"></div>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;">
-              <span style="font-size: 0.88rem; color: var(--gray);">Traders que operam por emoção</span>
-              <span style="font-family: 'Bebas Neue'; font-size: 1.2rem; color: #FFD700;">72%</span>
-            </div>
-            <div style="height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden;">
-              <div style="height: 100%; width: 72%; background: linear-gradient(to right, #FFD700, rgba(255,215,0,0.4)); border-radius: 2px; animation: bar-grow 2s ease both 0.3s;"></div>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;">
-              <span style="font-size: 0.88rem; color: var(--gray);">Traders com processo consistente</span>
-              <span style="font-family: 'Bebas Neue'; font-size: 1.2rem; color: #3EC87A;">13%</span>
-            </div>
-            <div style="height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden;">
-              <div style="height: 100%; width: 13%; background: linear-gradient(to right, #3EC87A, rgba(62,200,122,0.5)); border-radius: 2px; animation: bar-grow 2s ease both 0.6s;"></div>
-            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;"><span style="font-size: 0.88rem; color: var(--gray);">Traders que perdem consistentemente</span><span style="font-family: 'Bebas Neue'; font-size: 1.2rem; color: #FF5F57;">87%</span></div>
+            <div style="height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden;"><div style="height: 100%; width: 87%; background: linear-gradient(to right, #FF5F57, rgba(255,95,87,0.5)); border-radius: 2px; animation: bar-grow 2s ease both;"></div></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;"><span style="font-size: 0.88rem; color: var(--gray);">Traders que operam por emoção</span><span style="font-family: 'Bebas Neue'; font-size: 1.2rem; color: #FFD700;">72%</span></div>
+            <div style="height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden;"><div style="height: 100%; width: 72%; background: linear-gradient(to right, #FFD700, rgba(255,215,0,0.4)); border-radius: 2px; animation: bar-grow 2s ease both 0.3s;"></div></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;"><span style="font-size: 0.88rem; color: var(--gray);">Traders com processo consistente</span><span style="font-family: 'Bebas Neue'; font-size: 1.2rem; color: #3EC87A;">13%</span></div>
+            <div style="height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden;"><div style="height: 100%; width: 13%; background: linear-gradient(to right, #3EC87A, rgba(62,200,122,0.5)); border-radius: 2px; animation: bar-grow 2s ease both 0.6s;"></div></div>
           </div>
         </div>
       </div>
@@ -1385,9 +637,113 @@
   </div>
 </section>
 
+<!-- PERSONAS -->
+<section id="personas">
+  <div class="container">
+
+    <!-- FIX 1: headline e stats box alinhados no topo, sem espaço vazio -->
+    <div class="personas-head">
+      <div class="reveal-left">
+        <div class="section-label">Que tipo de trader você é hoje?</div>
+        <h2 class="personas-headline">
+          Antes de buscar<br>
+          mais uma estratégia,<br>
+          entenda qual<br>
+          comportamento está<br>
+          <em>travando<br>sua evolução.</em>
+        </h2>
+        <p class="personas-subtext" style="margin-top:16px;">
+          Cada trader está em um nível de consciência.<br>
+          <strong>O primeiro passo é reconhecer onde você está.</strong>
+        </p>
+      </div>
+
+      <div class="reveal-right personas-head-right">
+        <div style="background: var(--black2); border: 1px solid rgba(212,175,55,0.1); border-radius: 6px; padding: 28px;">
+          <div style="font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px;">Realidade do mercado</div>
+          <div class="personas-stats">
+            <div class="persona-stat-row">
+              <div class="persona-stat-pct red">87%</div>
+              <div class="persona-stat-info">
+                <div class="persona-stat-label">Traders que perdem consistentemente</div>
+                <div class="persona-stat-desc">A maioria das contas de varejo termina no prejuízo.</div>
+                <div class="persona-stat-bar-wrap"><div class="persona-stat-bar red" style="width:87%"></div></div>
+              </div>
+            </div>
+            <div class="persona-stat-row">
+              <div class="persona-stat-pct amber">72%</div>
+              <div class="persona-stat-info">
+                <div class="persona-stat-label">Traders que operam por emoção</div>
+                <div class="persona-stat-desc">Tomam decisões impulsivas e reagem ao mercado.</div>
+                <div class="persona-stat-bar-wrap"><div class="persona-stat-bar amber" style="width:72%"></div></div>
+              </div>
+            </div>
+            <div class="persona-stat-row">
+              <div class="persona-stat-pct green">13%</div>
+              <div class="persona-stat-info">
+                <div class="persona-stat-label">Traders com processo consistente</div>
+                <div class="persona-stat-desc">Desenvolvem método, gerenciam risco e evoluem.</div>
+                <div class="persona-stat-bar-wrap"><div class="persona-stat-bar green" style="width:13%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FIX 2: cards com flex column — tags sempre no fundo, alinhadas -->
+    <div class="personas-grid">
+      <div class="persona-card pc-red reveal">
+        <div class="persona-num">01</div>
+        <div class="persona-icon-wrap">🧠</div>
+        <h3 class="persona-title">Opera pela emoção</h3>
+        <p class="persona-desc">Vê o mercado subindo e descendo e acredita que qualquer variação pode ser a oportunidade. Entra por medo de ficar de fora, sai por desespero e muda de ideia a cada candle.</p>
+        <span class="persona-tag">⚠ Alto risco de decisões impulsivas</span>
+      </div>
+      <div class="persona-card pc-amber reveal">
+        <div class="persona-num">02</div>
+        <div class="persona-icon-wrap">📡</div>
+        <h3 class="persona-title">Depende de sinais e terceiros</h3>
+        <p class="persona-desc">Não constrói leitura própria. Espera alguém dizer onde comprar, onde vender e quando sair. Quando os sinais param, fica completamente perdido.</p>
+        <span class="persona-tag">⚡ Baixa autonomia operacional</span>
+      </div>
+      <div class="persona-card pc-blue reveal">
+        <div class="persona-num">03</div>
+        <div class="persona-icon-wrap">🔄</div>
+        <h3 class="persona-title">Não tem processo</h3>
+        <p class="persona-desc">Opera alguns dias com disciplina e outros no improviso. Não registra decisões, não revisa erros e não sabe exatamente por que ganhou ou perdeu.</p>
+        <span class="persona-tag">🎲 Resultado aleatório</span>
+      </div>
+      <div class="persona-card pc-green reveal">
+        <div class="persona-num">04</div>
+        <div class="persona-icon-wrap">🎯</div>
+        <h3 class="persona-title">Opera com método</h3>
+        <p class="persona-desc">Entende o contexto do mercado, tem critérios claros de entrada, sabe onde buscar informação e avalia cada operação antes de assumir qualquer risco.</p>
+        <span class="persona-tag">✅ Processo acima da promessa</span>
+      </div>
+    </div>
+
+    <!-- FIX 3: botão "conhecer o método" removido -->
+    <div class="personas-cta-strip reveal">
+      <div class="personas-cta-strip-icon">🏆</div>
+      <div class="personas-cta-strip-text">
+        <h4>Você está pronto para transformar sua realidade?</h4>
+        <p>A MonkBorg foi criada para quem quer parar de operar no escuro e desenvolver <strong>leitura, processo e consistência</strong> no mercado.</p>
+      </div>
+      <div class="personas-cta-strip-btns">
+        <a href="https://discord.gg/monkborg" target="_blank" class="btn-strip-primary">
+          <svg width="16" height="12" viewBox="0 0 18 14" fill="none"><path d="M15.25 1.17A15.3 15.3 0 0 0 11.52 0c-.17.3-.36.7-.5 1.02a14.1 14.1 0 0 0-4.04 0C6.84.7 6.65.3 6.48 0A15.32 15.32 0 0 0 2.75 1.17C.39 4.75-.24 8.24.08 11.67a15.4 15.4 0 0 0 4.69 2.37c.38-.52.72-1.07 1.01-1.64a9.99 9.99 0 0 1-1.59-.76c.13-.1.26-.2.38-.3a11 11 0 0 0 9.44 0c.12.1.26.2.38.3-.52.3-1.05.56-1.6.76.29.57.63 1.12 1.01 1.64a15.3 15.3 0 0 0 4.68-2.37c.39-4-.67-7.46-2.83-10.5ZM6 9.56c-.87 0-1.59-.8-1.59-1.78 0-.99.7-1.79 1.59-1.79.88 0 1.6.8 1.59 1.79 0 .98-.71 1.78-1.59 1.78Zm6 0c-.87 0-1.59-.8-1.59-1.78 0-.99.7-1.79 1.59-1.79.88 0 1.6.8 1.59 1.79 0 .98-.7 1.78-1.59 1.78Z" fill="currentColor"/></svg>
+          Entrar no Discord
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <div class="divider"></div>
 
-<!-- ——— O QUE É ——— -->
+<!-- O QUE É -->
 <section id="oque">
   <div class="container">
     <div class="oque-head">
@@ -1423,100 +779,53 @@
 
 <div class="divider"></div>
 
-<!-- ——— PROVA ——— -->
+<!-- PROVA -->
 <section id="prova">
   <div class="container">
     <div class="prova-inner">
       <div class="prova-left reveal-left">
-        <!-- Analysis mockup -->
         <div class="analysis-mockup">
           <div class="am-header">
-            <span class="am-dot r"></span>
-            <span class="am-dot y"></span>
-            <span class="am-dot g"></span>
+            <span class="am-dot r"></span><span class="am-dot y"></span><span class="am-dot g"></span>
             <span class="am-title-bar">#análises-diárias — MonkBorg</span>
           </div>
           <div class="am-body">
             <div class="am-analyst">
               <div class="am-avatar">MK</div>
-              <div>
-                <div class="am-name">Analista MonkBorg</div>
-                <div class="am-role">Analista Sênior</div>
-              </div>
+              <div><div class="am-name">Analista MonkBorg</div><div class="am-role">Analista Sênior</div></div>
               <div class="am-time">hoje às 9:47</div>
             </div>
-            <p class="am-text">
-              BTC formando estrutura de <strong>acumulação</strong> no HTF. Confluência de volume + suporte de demanda. Contexto favorável para continuação de alta, mas aguardando confirmação no LTF antes de posição.
-            </p>
-            <div class="am-tags">
-              <span class="am-tag">BTC/USDT</span>
-              <span class="am-tag">HTF Analysis</span>
-              <span class="am-tag">Acumulação</span>
-            </div>
-
-            <!-- SVG Sparkline -->
+            <p class="am-text">BTC formando estrutura de <strong>acumulação</strong> no HTF. Confluência de volume + suporte de demanda. Contexto favorável para continuação de alta, mas aguardando confirmação no LTF antes de posição.</p>
+            <div class="am-tags"><span class="am-tag">BTC/USDT</span><span class="am-tag">HTF Analysis</span><span class="am-tag">Acumulação</span></div>
             <svg class="am-chart-svg" viewBox="0 0 380 100" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.3"/>
-                  <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <path d="M0,80 L20,72 L40,78 L60,65 L80,70 L100,55 L120,60 L140,45 L160,50 L180,38 L200,42 L220,30 L240,35 L260,22 L280,28 L300,18 L320,25 L340,12 L360,15 L380,8 L380,100 L0,100 Z" fill="url(#chartGrad)" />
+              <defs><linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#D4AF37" stop-opacity="0.3"/><stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/></linearGradient></defs>
+              <path d="M0,80 L20,72 L40,78 L60,65 L80,70 L100,55 L120,60 L140,45 L160,50 L180,38 L200,42 L220,30 L240,35 L260,22 L280,28 L300,18 L320,25 L340,12 L360,15 L380,8 L380,100 L0,100 Z" fill="url(#chartGrad)"/>
               <path d="M0,80 L20,72 L40,78 L60,65 L80,70 L100,55 L120,60 L140,45 L160,50 L180,38 L200,42 L220,30 L240,35 L260,22 L280,28 L300,18 L320,25 L340,12 L360,15 L380,8" stroke="#D4AF37" stroke-width="1.5" fill="none"/>
               <circle cx="380" cy="8" r="4" fill="#D4AF37"/>
             </svg>
-
             <div class="am-sep"></div>
-
             <div class="am-analyst">
               <div class="am-avatar" style="background: linear-gradient(135deg, #3EC87A, #2AA860);">RB</div>
-              <div>
-                <div class="am-name">Analista MonkBorg</div>
-                <div class="am-role">Especialista Altcoins</div>
-              </div>
+              <div><div class="am-name">Analista MonkBorg</div><div class="am-role">Especialista Altcoins</div></div>
               <div class="am-time">hoje às 11:23</div>
             </div>
-            <p class="am-text">
-              ETH mantendo <strong>estrutura de alta</strong> no diário. Setup de continuação se romper 3.820. Stop técnico claro. R/R favorável.
-            </p>
+            <p class="am-text">ETH mantendo <strong>estrutura de alta</strong> no diário. Setup de continuação se romper 3.820. Stop técnico claro. R/R favorável.</p>
             <div class="am-tags">
-              <span class="am-tag" style="color: #3EC87A; border-color: rgba(62,200,122,0.3); background: rgba(62,200,122,0.06);">ETH/USDT</span>
+              <span class="am-tag" style="color:#3EC87A;border-color:rgba(62,200,122,0.3);background:rgba(62,200,122,0.06);">ETH/USDT</span>
               <span class="am-tag">Swing Trade</span>
             </div>
           </div>
         </div>
       </div>
-
       <div class="prova-right">
         <div class="section-label reveal">Prova Real</div>
         <h2 class="section-h2 reveal">Não é teoria.<br><span class="gold">É prática aplicada.</span></h2>
         <div class="gold-line reveal"></div>
-
         <div class="metric-list">
-          <div class="metric-item reveal">
-            <div class="metric-num">60+</div>
-            <div class="metric-info">
-              <h4>Análises por mês</h4>
-              <p>Leituras diárias com contexto completo, não apenas preço de entrada.</p>
-            </div>
-          </div>
-          <div class="metric-item reveal">
-            <div class="metric-num">300</div>
-            <div class="metric-info">
-              <h4>Membros na comunidade</h4>
-              <p>Traders em diferentes estágios compartilhando aprendizados reais.</p>
-            </div>
-          </div>
-          <div class="metric-item reveal">
-            <div class="metric-num">10+</div>
-            <div class="metric-info">
-              <h4>Analistas especializados</h4>
-              <p>Cada um com abordagem própria para cobrir diferentes cenários de mercado.</p>
-            </div>
-          </div>
+          <div class="metric-item reveal"><div class="metric-num">60+</div><div class="metric-info"><h4>Análises por mês</h4><p>Leituras diárias com contexto completo, não apenas preço de entrada.</p></div></div>
+          <div class="metric-item reveal"><div class="metric-num">300</div><div class="metric-info"><h4>Membros na comunidade</h4><p>Traders em diferentes estágios compartilhando aprendizados reais.</p></div></div>
+          <div class="metric-item reveal"><div class="metric-num">10+</div><div class="metric-info"><h4>Analistas especializados</h4><p>Cada um com abordagem própria para cobrir diferentes cenários de mercado.</p></div></div>
         </div>
-
         <div class="proof-quote reveal">
           <em>Aqui você entende o <strong>porquê do movimento</strong>, não só o resultado. Isso é o que separa quem evolui de quem apenas segue sinais.</em>
           <div class="proof-quote-foot">— <span>Filosofia MonkBorg</span></div>
@@ -1528,7 +837,7 @@
 
 <div class="divider"></div>
 
-<!-- ——— COMO FUNCIONA ——— -->
+<!-- COMO FUNCIONA -->
 <section id="como">
   <div class="container">
     <div class="como-head">
@@ -1539,33 +848,17 @@
     </div>
     <div class="steps-timeline">
       <div class="steps-line"></div>
-      <div class="step">
-        <div class="step-num">01<span class="step-icon">🔗</span></div>
-        <h4>Entre no Discord</h4>
-        <p>Acesse imediatamente a comunidade. Sem burocracia, sem espera.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">02<span class="step-icon">📚</span></div>
-        <h4>Acesse as Aulas</h4>
-        <p>Comece pelo seu nível. Conteúdo estruturado do básico ao avançado.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">03<span class="step-icon">📊</span></div>
-        <h4>Análises Diárias</h4>
-        <p>Acompanhe análises em tempo real com contexto e lógica explicada.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">04<span class="step-icon">🚀</span></div>
-        <h4>Evolua sua Leitura</h4>
-        <p>Desenvolva autonomia. Opere com processo, não com emoção.</p>
-      </div>
+      <div class="step"><div class="step-num">01<span class="step-icon">🔗</span></div><h4>Entre no Discord</h4><p>Acesse imediatamente a comunidade. Sem burocracia, sem espera.</p></div>
+      <div class="step"><div class="step-num">02<span class="step-icon">📚</span></div><h4>Acesse as Aulas</h4><p>Comece pelo seu nível. Conteúdo estruturado do básico ao avançado.</p></div>
+      <div class="step"><div class="step-num">03<span class="step-icon">📊</span></div><h4>Análises Diárias</h4><p>Acompanhe análises em tempo real com contexto e lógica explicada.</p></div>
+      <div class="step"><div class="step-num">04<span class="step-icon">🚀</span></div><h4>Evolua sua Leitura</h4><p>Desenvolva autonomia. Opere com processo, não com emoção.</p></div>
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ——— PRA QUEM É ——— -->
+<!-- PRA QUEM É -->
 <section id="paraquem">
   <div class="container">
     <div class="paraquem-head">
@@ -1576,82 +869,38 @@
     </div>
     <div class="split-screen">
       <div class="split-side split-yes reveal-left">
-        <div class="split-title">
-          <span class="split-emoji">✅</span>
-          É pra você que:
-        </div>
+        <div class="split-title"><span class="split-emoji">✅</span>É pra você que:</div>
         <ul class="check-list">
-          <li>
-            <span class="check-icon yes">✓</span>
-            Quer aprender a operar com <strong>lógica própria</strong>
-          </li>
-          <li>
-            <span class="check-icon yes">✓</span>
-            Busca <strong>consistência</strong> e resultados sustentáveis
-          </li>
-          <li>
-            <span class="check-icon yes">✓</span>
-            Está cansado de <strong>depender de terceiros</strong> para operar
-          </li>
-          <li>
-            <span class="check-icon yes">✓</span>
-            Quer entender o <strong>comportamento do mercado</strong> não só preços
-          </li>
-          <li>
-            <span class="check-icon yes">✓</span>
-            Está disposto a <strong>estudar e aplicar</strong> com disciplina
-          </li>
+          <li><span class="check-icon yes">✓</span><span class="check-text">Quer aprender a operar com <strong>lógica própria</strong>, sem depender de ninguém</span></li>
+          <li><span class="check-icon yes">✓</span><span class="check-text">Busca <strong>consistência</strong> e resultados sustentáveis no longo prazo</span></li>
+          <li><span class="check-icon yes">✓</span><span class="check-text">Está cansado de <strong>depender de sinais de terceiros</strong> para operar</span></li>
+          <li><span class="check-icon yes">✓</span><span class="check-text">Quer entender o <strong>comportamento do mercado</strong>, não só o preço</span></li>
+          <li><span class="check-icon yes">✓</span><span class="check-text">Está disposto a <strong>estudar, aplicar e evoluir</strong> com disciplina</span></li>
         </ul>
       </div>
       <div class="split-side split-no reveal-right">
-        <div class="split-title">
-          <span class="split-emoji">❌</span>
-          Não é pra você que:
-        </div>
+        <div class="split-title"><span class="split-emoji">❌</span>Não é pra você que:</div>
         <ul class="check-list">
-          <li>
-            <span class="check-icon no">✗</span>
-            Procura <strong>dinheiro rápido</strong> sem esforço
-          </li>
-          <li>
-            <span class="check-icon no">✗</span>
-            Quer apenas <strong>copiar trade</strong> sem entender o porquê
-          </li>
-          <li>
-            <span class="check-icon no">✗</span>
-            Não tem disposição para <strong>estudar e evoluir</strong>
-          </li>
-          <li>
-            <span class="check-icon no">✗</span>
-            Busca uma <strong>fórmula mágica</strong> que funciona automaticamente
-          </li>
-          <li>
-            <span class="check-icon no">✗</span>
-            Não está pronto para <strong>responsabilidade</strong> sobre suas decisões
-          </li>
+          <li><span class="check-icon no">✗</span><span class="check-text">Procura <strong>dinheiro rápido</strong> sem esforço ou estudo</span></li>
+          <li><span class="check-icon no">✗</span><span class="check-text">Quer apenas <strong>copiar trades</strong> sem entender o porquê</span></li>
+          <li><span class="check-icon no">✗</span><span class="check-text">Não tem disposição para <strong>estudar e evoluir</strong> de verdade</span></li>
+          <li><span class="check-icon no">✗</span><span class="check-text">Busca uma <strong>fórmula mágica</strong> que funcione automaticamente</span></li>
+          <li><span class="check-icon no">✗</span><span class="check-text">Não está pronto para assumir <strong>responsabilidade</strong> pelas próprias decisões</span></li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ——— CTA FINAL ——— -->
+<!-- CTA FINAL -->
 <section id="cta">
   <div class="cta-bg"></div>
-  <div class="cta-rings">
-    <div class="cta-ring"></div>
-    <div class="cta-ring"></div>
-    <div class="cta-ring"></div>
-  </div>
+  <div class="cta-rings"><div class="cta-ring"></div><div class="cta-ring"></div><div class="cta-ring"></div></div>
   <div class="container">
     <div class="cta-inner">
       <div class="section-label reveal">Decisão</div>
-      <h2 class="cta-h2 reveal">
-        Continuar perdido<br>ou <span>evoluir de verdade.</span>
-      </h2>
-      <p class="cta-sub reveal">
-        A decisão é simples. Você pode continuar operando no achismo, ou começar a construir uma leitura de mercado real — com suporte, análise e comunidade.
-      </p>
+      <h2 class="cta-h2 reveal">Continuar perdido<br>ou <span>evoluir de verdade.</span></h2>
+      <p class="cta-sub reveal">A decisão é simples. Você pode continuar operando no achismo, ou começar a construir uma leitura de mercado real — com suporte, análise e comunidade.</p>
       <div class="cta-btns reveal">
         <a href="https://discord.gg/monkborg" target="_blank" class="btn-primary-lg">
           <svg width="20" height="15" viewBox="0 0 18 14" fill="none"><path d="M15.25 1.17A15.3 15.3 0 0 0 11.52 0c-.17.3-.36.7-.5 1.02a14.1 14.1 0 0 0-4.04 0C6.84.7 6.65.3 6.48 0A15.32 15.32 0 0 0 2.75 1.17C.39 4.75-.24 8.24.08 11.67a15.4 15.4 0 0 0 4.69 2.37c.38-.52.72-1.07 1.01-1.64a9.99 9.99 0 0 1-1.59-.76c.13-.1.26-.2.38-.3a11 11 0 0 0 9.44 0c.12.1.26.2.38.3-.52.3-1.05.56-1.6.76.29.57.63 1.12 1.01 1.64a15.3 15.3 0 0 0 4.68-2.37c.39-4-.67-7.46-2.83-10.5ZM6 9.56c-.87 0-1.59-.8-1.59-1.78 0-.99.7-1.79 1.59-1.79.88 0 1.6.8 1.59 1.79 0 .98-.71 1.78-1.59 1.78Zm6 0c-.87 0-1.59-.8-1.59-1.78 0-.99.7-1.79 1.59-1.79.88 0 1.6.8 1.59 1.79 0 .98-.7 1.78-1.59 1.78Z" fill="currentColor"/></svg>
@@ -1659,18 +908,9 @@
         </a>
       </div>
       <div class="cta-perks reveal">
-        <div class="cta-perk">
-          <span class="cta-perk-dot"></span>
-          Acesso imediato à comunidade
-        </div>
-        <div class="cta-perk">
-          <span class="cta-perk-dot"></span>
-          Aulas disponíveis 24/7
-        </div>
-        <div class="cta-perk">
-          <span class="cta-perk-dot"></span>
-          Análises todos os dias
-        </div>
+        <div class="cta-perk"><span class="cta-perk-dot"></span>Acesso imediato à comunidade</div>
+        <div class="cta-perk"><span class="cta-perk-dot"></span>Aulas disponíveis 24/7</div>
+        <div class="cta-perk"><span class="cta-perk-dot"></span>Análises todos os dias</div>
       </div>
     </div>
   </div>
@@ -1679,90 +919,45 @@
 <!-- FOOTER -->
 <footer>
   <div class="container">
-    <div class="footer-inner" style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 16px; padding: 20px 0;">
-      <div class="footer-logo">
-        <img src="https://i.imgur.com/Iy8O0Gg.png" alt="MonkBorg" style="height:60px; width:auto;">
-      </div>
-      <p class="footer-copy" style="margin: 0;">© 2026 <span>MonkBorg</span>. Todos os direitos reservados.</p>
+    <div style="display:flex;flex-direction:row;align-items:center;justify-content:center;gap:16px;padding:20px 0;">
+      <div class="footer-logo"><img src="https://i.imgur.com/Iy8O0Gg.png" alt="MonkBorg" style="height:60px;width:auto;"></div>
+      <p class="footer-copy" style="margin:0;">© 2026 <span>MonkBorg</span>. Todos os direitos reservados.</p>
     </div>
   </div>
 </footer>
 
 <script>
-  // ——— NAV scroll effect
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-  });
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
 
-  // ——— Hamburger
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('navLinks');
-  hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-  });
-  navLinks.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => navLinks.classList.remove('open'));
-  });
+  hamburger.addEventListener('click', () => { navLinks.classList.toggle('open'); });
+  navLinks.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => navLinks.classList.remove('open')); });
 
-  // ——— Reveal on scroll
   const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
   revealEls.forEach(el => observer.observe(el));
 
-  // Steps special observer
   const steps = document.querySelectorAll('.step');
   const stepObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   steps.forEach(s => stepObserver.observe(s));
 
-  // ——— Smooth scroll for nav links
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const href = a.getAttribute('href');
       if (href === '#') return;
       const target = document.querySelector(href);
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
   });
 
-  // ——— Hero label pulse
   const heroLabel = document.querySelector('.hero-label');
-  if (heroLabel) {
-    setInterval(() => {
-      heroLabel.style.opacity = '0.7';
-      setTimeout(() => heroLabel.style.opacity = '1', 400);
-    }, 3000);
-  }
-
-  // ——— Stat counter animation
-  const animateValue = (el, start, end, duration) => {
-    const range = end - start;
-    const startTime = performance.now();
-    const step = (time) => {
-      const elapsed = time - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.round(start + range * eased).toLocaleString();
-      if (progress < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  };
+  if (heroLabel) { setInterval(() => { heroLabel.style.opacity = '0.7'; setTimeout(() => heroLabel.style.opacity = '1', 400); }, 3000); }
 </script>
 </body>
 </html>
