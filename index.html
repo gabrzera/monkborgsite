@@ -135,23 +135,29 @@
     margin-bottom: 48px;
   }
   .personas-head-right { display: flex; flex-direction: column; }
-  .personas-head-right > div { flex: 1; display: flex; flex-direction: column; }
+  .personas-head-right > div { flex: 1; display: flex; flex-direction: column; padding: 28px; }
 
   .personas-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.8rem, 3vw, 2.8rem); line-height: 1.05; letter-spacing: 2px; color: var(--white); }
   .personas-headline em { font-style: normal; color: var(--gold); }
   .personas-subtext { font-size: 0.9rem; color: var(--gray); line-height: 1.65; font-weight: 300; padding-top: 6px; max-width: 520px; }
   .personas-subtext strong { color: var(--white); font-weight: 500; }
 
-  .personas-stats { display: flex; flex-direction: column; gap: 0; margin-top: 20px; flex: 1; justify-content: space-evenly; }
-  .persona-stat-row { display: flex; align-items: center; gap: 14px; }
-  .persona-stat-pct { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; min-width: 52px; line-height: 1; }
+  .personas-stats { display: flex; flex-direction: column; gap: 0; margin-top: 0; flex: 1; justify-content: space-between; }
+  .persona-stat-row {
+    display: flex; align-items: center; gap: 14px;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(212,175,55,0.07);
+  }
+  .persona-stat-row:first-child { padding-top: 0; }
+  .persona-stat-row:last-child  { padding-bottom: 0; border-bottom: none; }
+  .persona-stat-pct { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; min-width: 68px; line-height: 1; letter-spacing: 1px; }
   .persona-stat-pct.red   { color: #FF5F57; }
   .persona-stat-pct.amber { color: #FFD700; }
   .persona-stat-pct.green { color: #3EC87A; }
   .persona-stat-info { flex: 1; }
-  .persona-stat-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--white); margin-bottom: 5px; }
-  .persona-stat-desc { font-size: 0.75rem; color: var(--gray2); margin-bottom: 5px; }
-  .persona-stat-bar-wrap { height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden; }
+  .persona-stat-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--white); margin-bottom: 4px; }
+  .persona-stat-desc { font-size: 0.78rem; color: var(--gray2); margin-bottom: 6px; font-weight: 300; }
+  .persona-stat-bar-wrap { height: 5px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
   .persona-stat-bar { height: 100%; border-radius: 2px; animation: bar-grow 2s ease both; }
   .persona-stat-bar.red   { background: linear-gradient(to right, #FF5F57, rgba(255,95,87,0.4)); }
   .persona-stat-bar.amber { background: linear-gradient(to right, #FFD700, rgba(255,215,0,0.4)); }
@@ -659,7 +665,7 @@
       </div>
 
       <div class="reveal-right personas-head-right">
-        <div style="background: var(--black2); border: 1px solid rgba(212,175,55,0.1); border-radius: 6px; padding: 28px;">
+        <div style="background: var(--black2); border: 1px solid rgba(212,175,55,0.1); border-radius: 6px;">
           <div style="font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px;">Realidade do mercado</div>
           <div class="personas-stats">
             <div class="persona-stat-row">
@@ -728,7 +734,7 @@
       <div class="personas-cta-strip-icon">🏆</div>
       <div class="personas-cta-strip-text">
         <h4>Você está pronto para transformar sua realidade?</h4>
-        <p>A MonkBorg foi criada para quem quer parar de operar no escuro e desenvolver <strong>leitura, processo e consistência</strong> no mercado.</p>
+        <p>A MonkBorg foi criada para quem quer parar de operar no escuro e desenvolver <strong>leitura, processo e consistência no mercado.</strong></p>
       </div>
       <div class="personas-cta-strip-btns">
         <a href="https://discord.gg/monkborg" target="_blank" class="btn-strip-primary">
