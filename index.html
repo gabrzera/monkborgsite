@@ -108,6 +108,7 @@
   /* PROBLEMA */
   #problema { padding: 100px 0 0; background: var(--black); }
   .problema-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
   .problem-cards { display: flex; flex-direction: column; gap: 14px; margin-top: 10px; }
   .problem-card { display: flex; align-items: flex-start; gap: 16px; background: var(--black2); border: 1px solid rgba(212,175,55,0.1); border-left: 2px solid var(--gold2); padding: 18px 20px; border-radius: 3px; transition: border-color 0.3s, background 0.3s, transform 0.3s; cursor: default; }
   .problem-card:hover { border-left-color: var(--gold); background: rgba(212,175,55,0.03); transform: translateX(4px); }
@@ -115,7 +116,7 @@
   .problem-text h4 { font-weight: 600; font-size: 0.95rem; color: var(--white); margin-bottom: 4px; }
   .problem-text p { font-size: 0.88rem; color: var(--gray); line-height: 1.5; }
   .problema-right { display: flex; flex-direction: column; justify-content: center; padding-top: 0; }
-  .break-box { background: var(--black2); border: 1px solid rgba(212,175,55,0.2); border-radius: 6px; padding: 36px 32px; position: relative; overflow: hidden; }
+  .break-box { background: var(--black2); border: 1px solid rgba(212,175,55,0.2); border-radius: 6px; padding: 48px 36px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
   .break-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--gold2), var(--gold3), var(--gold2)); }
   .break-quote { font-size: 2.5rem; color: rgba(212,175,55,0.2); line-height: 1; margin-bottom: 12px; font-family: serif; }
   .break-text { font-size: 1.15rem; color: var(--white); line-height: 1.7; font-weight: 300; margin-bottom: 20px; }
@@ -585,7 +586,7 @@
     <div class="problema-inner">
       <div class="problema-left">
         <div class="section-label reveal">O Problema</div>
-        <h2 class="section-h2 reveal">A maioria dos traders<br>nunca evolui. <span class="gold">E o motivo<br>é simples.</span></h2>
+        <h2 class="section-h2 reveal">A maioria dos traders nunca evolui. <span class="gold">E o motivo é simples.</span></h2>
         <div class="gold-line reveal"></div>
         <div class="problem-cards">
           <div class="problem-card reveal">
