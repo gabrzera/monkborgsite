@@ -107,14 +107,14 @@
 
   /* PROBLEMA */
   #problema { padding: 100px 0 0; background: var(--black); }
-  .problema-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .problema-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
   .problem-cards { display: flex; flex-direction: column; gap: 14px; margin-top: 10px; }
   .problem-card { display: flex; align-items: flex-start; gap: 16px; background: var(--black2); border: 1px solid rgba(212,175,55,0.1); border-left: 2px solid var(--gold2); padding: 18px 20px; border-radius: 3px; transition: border-color 0.3s, background 0.3s, transform 0.3s; cursor: default; }
   .problem-card:hover { border-left-color: var(--gold); background: rgba(212,175,55,0.03); transform: translateX(4px); }
   .problem-icon { flex-shrink: 0; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(212,175,55,0.2); border-radius: 3px; color: var(--gold); font-size: 1rem; margin-top: 2px; }
   .problem-text h4 { font-weight: 600; font-size: 0.95rem; color: var(--white); margin-bottom: 4px; }
   .problem-text p { font-size: 0.88rem; color: var(--gray); line-height: 1.5; }
-  .problema-right { padding-top: 30px; }
+  .problema-right { display: flex; flex-direction: column; justify-content: center; padding-top: 0; }
   .break-box { background: var(--black2); border: 1px solid rgba(212,175,55,0.2); border-radius: 6px; padding: 36px 32px; position: relative; overflow: hidden; }
   .break-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--gold2), var(--gold3), var(--gold2)); }
   .break-quote { font-size: 2.5rem; color: rgba(212,175,55,0.2); line-height: 1; margin-bottom: 12px; font-family: serif; }
@@ -627,17 +627,7 @@
           </p>
           <div class="break-foot">— Fundamento da <span>MonkBorg</span></div>
         </div>
-        <div style="margin-top: 24px; background: var(--black2); border: 1px solid rgba(212,175,55,0.1); border-radius: 6px; padding: 28px;">
-          <div style="font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px;">Realidade do mercado</div>
-          <div style="display: flex; flex-direction: column; gap: 10px;">
-            <div style="display: flex; justify-content: space-between; align-items: center;"><span style="font-size: 0.88rem; color: var(--gray);">Traders que perdem consistentemente</span><span style="font-family: 'Bebas Neue'; font-size: 1.2rem; color: #FF5F57;">87%</span></div>
-            <div style="height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden;"><div style="height: 100%; width: 87%; background: linear-gradient(to right, #FF5F57, rgba(255,95,87,0.5)); border-radius: 2px; animation: bar-grow 2s ease both;"></div></div>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;"><span style="font-size: 0.88rem; color: var(--gray);">Traders que operam por emoção</span><span style="font-family: 'Bebas Neue'; font-size: 1.2rem; color: #FFD700;">72%</span></div>
-            <div style="height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden;"><div style="height: 100%; width: 72%; background: linear-gradient(to right, #FFD700, rgba(255,215,0,0.4)); border-radius: 2px; animation: bar-grow 2s ease both 0.3s;"></div></div>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;"><span style="font-size: 0.88rem; color: var(--gray);">Traders com processo consistente</span><span style="font-family: 'Bebas Neue'; font-size: 1.2rem; color: #3EC87A;">13%</span></div>
-            <div style="height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden;"><div style="height: 100%; width: 13%; background: linear-gradient(to right, #3EC87A, rgba(62,200,122,0.5)); border-radius: 2px; animation: bar-grow 2s ease both 0.6s;"></div></div>
-          </div>
-        </div>
+
       </div>
     </div>
   </div>
@@ -658,10 +648,7 @@
           comportamento está<br>
           <em>travando<br>sua evolução.</em>
         </h2>
-        <p class="personas-subtext" style="margin-top:16px;">
-          Cada trader está em um nível de consciência.<br>
-          <strong>O primeiro passo é reconhecer onde você está.</strong>
-        </p>
+
       </div>
 
       <div class="reveal-right personas-head-right">
@@ -692,6 +679,12 @@
                 <div class="persona-stat-bar-wrap"><div class="persona-stat-bar green" style="width:13%"></div></div>
               </div>
             </div>
+          </div>
+          <div style="border-top: 1px solid rgba(212,175,55,0.1); margin-top: 20px; padding-top: 16px;">
+            <p style="font-size:0.82rem; color: var(--gray2); line-height:1.55; font-weight:300;">
+              Cada trader está em um nível de consciência.<br>
+              <strong style="color:var(--white); font-weight:600;">O primeiro passo é reconhecer onde você está.</strong>
+            </p>
           </div>
         </div>
       </div>
@@ -734,7 +727,7 @@
       <div class="personas-cta-strip-icon">🏆</div>
       <div class="personas-cta-strip-text">
         <h4>Você está pronto para transformar sua realidade?</h4>
-        <p style="max-width: 520px;">A MonkBorg foi criada para quem quer parar de operar no escuro e desenvolver <strong>leitura, processo e consistência</strong> no mercado.</p>
+        <p>A MonkBorg foi criada para desenvolver <strong>leitura, processo e consistência</strong> no mercado.</p>
       </div>
       <div class="personas-cta-strip-btns">
         <a href="https://discord.gg/monkborg" target="_blank" class="btn-strip-primary">
